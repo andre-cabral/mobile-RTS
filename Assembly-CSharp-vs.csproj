@@ -46,10 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\GameController\CameraManager.cs" />
+     <Compile Include="Assets\Scripts\GameController\CharactersManager.cs" />
+     <Compile Include="Assets\Scripts\GameController\ControlsManager.cs" />
      <Compile Include="Assets\Scripts\NamesPatterns\Tags.cs" />
      <Compile Include="Assets\Scripts\Player\CharacterMovement.cs" />
      <Compile Include="Assets\Scripts\Player\CharacterSelectButton.cs" />
-     <Compile Include="Assets\Scripts\Player\CharactersManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.6/UnityEngine.UI.dll</HintPath>
  </Reference>

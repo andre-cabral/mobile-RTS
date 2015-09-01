@@ -15,21 +15,8 @@ public class CharactersManager : MonoBehaviour {
 			allCharactersMovements[i] = allCharacters[i].GetComponent<CharacterMovement>();
 		}
 	}
-	
-	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			CheckClickedPoint(Input.mousePosition);
-			
-		}
-		
-		if(Input.touchCount > 0){
-			if (Input.GetTouch(0).phase == TouchPhase.Began) {
-				CheckClickedPoint(Input.GetTouch(0).position);
-			}
-		}
-	}
 
-	void CheckClickedPoint(Vector3 point){
+	public void CheckClickedPoint(Vector3 point){
 		// Construct a ray from the current touch coordinates
 		Ray ray = Camera.main.ScreenPointToRay(point);
 		RaycastHit hit;

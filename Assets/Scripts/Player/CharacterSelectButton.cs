@@ -17,7 +17,7 @@ public class CharacterSelectButton : MonoBehaviour {
 			character.setCharacterButton(this);
 		}
 
-		charactersManager = GameObject.FindGameObjectWithTag(Tags.charactersController).GetComponent<CharactersManager>();
+		charactersManager = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<CharactersManager>();
 
 		GameObject[] buttons = GameObject.FindGameObjectsWithTag(Tags.characterSelectButton);
 		characterSelectButtons = new CharacterSelectButton[buttons.Length];
