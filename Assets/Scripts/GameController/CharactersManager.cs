@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 public class CharactersManager : MonoBehaviour {
 
-	GameObject[] allCharacters;
+	public GameObject[] allCharacters;
 	CharacterMovement[] allCharactersMovements;
 	List<CharacterMovement> selectedCharactersMovements = new List<CharacterMovement>();
 
 	void Awake () {
-		allCharacters = GameObject.FindGameObjectsWithTag(Tags.player);
 		allCharactersMovements = new CharacterMovement[allCharacters.Length];
 		for(int i=0; i<allCharacters.Length; i++){
 			allCharactersMovements[i] = allCharacters[i].GetComponent<CharacterMovement>();
@@ -22,10 +21,14 @@ public class CharactersManager : MonoBehaviour {
 		RaycastHit hit;
 		// Move to hit
 		if (Physics.Raycast(ray, out hit, 1000f)){
-			if (hit.collider.CompareTag(Tags.player)){
-				hit.collider.gameObject.GetComponent<CharacterMovement>().CharacterClicked();
-			}else{
+			switch (hit.collider.tag){
+			case Tags.floor:
 				MoveAllSelected(hit.point);
+				break;
+
+			case Tags.player:
+				hit.collider.gameObject.GetComponent<CharacterMovement>().CharacterClicked();
+				break;			
 			}
 		}
 	}
@@ -61,5 +64,9 @@ public class CharactersManager : MonoBehaviour {
 			characterMovement.SetCharacterSelection(false);
 		}
 		selectedCharactersMovements.Clear();
+	}
+
+	public GameObject[] GetAllCharacters(){
+		return allCharacters;
 	}
 }

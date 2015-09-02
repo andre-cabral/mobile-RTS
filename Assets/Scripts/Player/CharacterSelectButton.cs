@@ -4,7 +4,8 @@ using System.Collections;
 
 public class CharacterSelectButton : MonoBehaviour {
 
-	public CharacterMovement character;
+	public int characterNumber;
+	CharacterMovement character;
 	CharactersManager charactersManager;
 	public bool selected = false;
 	CharacterSelectButton[] characterSelectButtons;
@@ -13,12 +14,7 @@ public class CharacterSelectButton : MonoBehaviour {
 	ColorBlock pressed = new ColorBlock();
 
 	void Awake(){
-		if(character != null){
-			character.setCharacterButton(this);
-		}
-
 		charactersManager = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<CharactersManager>();
-
 		GameObject[] buttons = GameObject.FindGameObjectsWithTag(Tags.characterSelectButton);
 		characterSelectButtons = new CharacterSelectButton[buttons.Length];
 		for(int i=0; i<buttons.Length; i++){
@@ -31,6 +27,16 @@ public class CharacterSelectButton : MonoBehaviour {
 		pressed = button.colors;
 		pressed.normalColor = button.colors.pressedColor;
 		pressed.highlightedColor = button.colors.pressedColor;
+	}
+
+	void Start(){
+		GameObject[] allCharacters = charactersManager.GetAllCharacters();
+		if(characterNumber-1 >= 0 && characterNumber-1 < allCharacters.Length){
+			if(allCharacters[characterNumber - 1] != null){
+				character = allCharacters[characterNumber - 1].GetComponent<CharacterMovement>();
+				character.setCharacterButton(this);
+			}
+		}
 	}
 
 	public void SetButtonSelected(bool isSelected){

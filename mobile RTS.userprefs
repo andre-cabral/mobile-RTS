@@ -1,13 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameController\ControlsManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameController\CharactersManager.cs" Line="5" Column="31" />
-      <File FileName="Assets\Scripts\Player\CharacterSelectButton.cs" Line="20" Column="75" />
+      <File FileName="Assets\Scripts\GameController\CharactersManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameController\ControlsManager.cs" Line="35" Column="4" />
+      <File FileName="Assets\Scripts\Player\CharacterSelectButton.cs" Line="37" Column="12" />
       <File FileName="Assets\Scripts\NamesPatterns\Tags.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\CharacterMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameController\ControlsManager.cs" Line="32" Column="3" />
-      <File FileName="Assets\Scripts\GameController\CameraManager.cs" Line="20" Column="104" />
+      <File FileName="Assets\Scripts\GameController\CameraManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
