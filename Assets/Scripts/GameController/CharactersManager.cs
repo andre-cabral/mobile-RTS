@@ -21,14 +21,25 @@ public class CharactersManager : MonoBehaviour {
 		RaycastHit hit;
 		// Move to hit
 		if (Physics.Raycast(ray, out hit, 1000f)){
-			switch (hit.collider.tag){
-			case Tags.floor:
-				MoveAllSelected(hit.point);
+			switch (hit.transform.gameObject.tag){
+			case Tags.enemy:
+				AttackWithAllSelected(hit.transform.gameObject);
+				break;
+
+			case Tags.enemyClickArea:
+				AttackWithAllSelected(hit.transform.parent.gameObject);
 				break;
 
 			case Tags.player:
 				hit.collider.gameObject.GetComponent<CharacterMovement>().CharacterClicked();
-				break;			
+				break;		
+			
+			case Tags.wall:
+				break;
+
+			default:
+				MoveAllSelected(hit.point);
+				break;
 			}
 		}
 	}
@@ -38,6 +49,13 @@ public class CharactersManager : MonoBehaviour {
 			characterMovement.goToPoint(destination);
 		}
 	}
+
+	void AttackWithAllSelected(GameObject enemy){
+		foreach(CharacterMovement characterMovement in selectedCharactersMovements){
+			characterMovement.AttackTarget(enemy);
+		}
+	}
+
 
 	public void SelectOneCharacter(CharacterMovement characterMovement){
 		RemoveAllFromSelected();

@@ -1,0 +1,118 @@
+﻿using UnityEngine;
+using System.Collections;
+
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(UnitStats))]
+public class Attack : MonoBehaviour {
+
+	public GameObject projectile;
+	bool attackingTarget = false;
+	GameObject targetToAttack;
+	UnitStats targetStats;
+	UnitStats unitStats;
+	float attackDelayCount = 0f;
+	bool isRanged = false;
+	string targetTag;
+	NavMeshAgent navMeshAgent;
+	bool moveYAxis = false;
+
+	void Awake(){
+		navMeshAgent = GetComponent<NavMeshAgent>();
+		unitStats = GetComponent<UnitStats>();
+
+		attackDelayCount = unitStats.attackDelay;
+
+		isRanged = unitStats.attackRange > 0f;
+
+		if(gameObject.tag == Tags.player){
+			targetTag = Tags.enemy;
+		}
+		if(gameObject.tag == Tags.enemy){
+			targetTag = Tags.player;
+		}
+	}
+
+	void Update(){
+		if( attackingTarget && !unitStats.getIsDead() ){
+			if(!targetStats.getIsDead()){
+				AttackTargetFollow();
+			}
+		}
+		if( attackDelayCount < unitStats.attackDelay && !unitStats.getIsDead() ){
+			attackDelayCount += Time.deltaTime;
+		}
+	}
+
+	void AttackTargetFollow(){
+		if( (isRanged && Vector3.Distance(transform.position, targetToAttack.transform.position) > unitStats.attackRange)
+		   || (!isRanged && !targetToAttack.GetComponent<Collider>().bounds.Intersects(GetComponent<Collider>().bounds)) ){
+			FollowTargetPosition(targetToAttack.transform.position);
+		}else{
+			navMeshAgent.Stop();
+			if(attackDelayCount >= unitStats.attackDelay){
+				if(!isRanged){
+					MeleeAttack();
+					attackDelayCount = 0f;
+				}else{
+					RangedAttack();
+					attackDelayCount = 0f;
+				}
+			}
+		}
+
+	}
+
+	void MeleeAttack(){
+		//play the animation
+
+		//the animation will call the next function, CauseDamageOnTarget (see if this will be really used)
+		CauseDamageOnTarget();
+
+	}
+
+	void RangedAttack(){
+		//Throw the projectile code
+		if(projectile != null){
+			GameObject newProjectile = (GameObject)Instantiate(projectile, transform.position, Quaternion.identity);
+			newProjectile.transform.LookAt(targetToAttack.transform.position);
+			Projectile projectileScript = newProjectile.GetComponent<Projectile>();
+			projectileScript.setTargetTag(targetTag);
+			projectileScript.setAttack(unitStats.attack);
+		}
+	}
+
+	public void CauseDamageOnTarget(){
+		targetToAttack.GetComponent<UnitStats>().takeDamage(unitStats.attack);
+	}
+
+
+	public void FollowTargetPosition(Vector3 point){
+		Vector3 destination;
+		if(!moveYAxis){
+			destination = new Vector3(point.x, transform.position.y, point.z);
+		}else{
+			destination = new Vector3(point.x, point.y, point.z);
+		}
+		navMeshAgent.SetDestination(destination);
+	}
+
+	public void AttackTarget(GameObject target){
+		if(target.tag == targetTag){
+			attackingTarget = true;
+			targetToAttack = target;
+			targetStats = target.GetComponent<UnitStats>();
+		}
+	}
+
+	public void setAttackingTarget(bool attackingTarget){
+		this.attackingTarget = attackingTarget;
+	}
+
+	public bool getAttackingTarget(){
+		return attackingTarget;
+	}
+
+	public void setMoveYAxis(bool moveYAxis){
+		this.moveYAxis = moveYAxis;
+	}
+}

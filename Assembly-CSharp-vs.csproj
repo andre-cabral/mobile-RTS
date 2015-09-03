@@ -46,12 +46,21 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Enemy\EnemyStats.cs" />
+     <Compile Include="Assets\Scripts\Enemy\PatrolAndStalkMovement.cs" />
+     <Compile Include="Assets\Scripts\Enemy\PlayerSeeingArea.cs" />
      <Compile Include="Assets\Scripts\GameController\CameraManager.cs" />
      <Compile Include="Assets\Scripts\GameController\CharactersManager.cs" />
-     <Compile Include="Assets\Scripts\GameController\ControlsManager.cs" />
+     <Compile Include="Assets\Scripts\Input\CharacterSelectButton.cs" />
+     <Compile Include="Assets\Scripts\Input\ControlsManager.cs" />
+     <Compile Include="Assets\Scripts\NamesPatterns\HashAnimatorStalkerEnemy.cs" />
      <Compile Include="Assets\Scripts\NamesPatterns\Tags.cs" />
      <Compile Include="Assets\Scripts\Player\CharacterMovement.cs" />
-     <Compile Include="Assets\Scripts\Player\CharacterSelectButton.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\Units\Attack.cs" />
+     <Compile Include="Assets\Scripts\Units\Projectile.cs" />
+     <Compile Include="Assets\Scripts\Units\UnitStats.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.6/UnityEngine.UI.dll</HintPath>
  </Reference>
