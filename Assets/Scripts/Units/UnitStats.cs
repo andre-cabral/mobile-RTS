@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class UnitStats : MonoBehaviour {
-	
+
+	public string characterName = "";
 	public int startingLife = 100;
 	public int attack = 1;
 	public float attackRange = 0f;
@@ -19,15 +20,10 @@ public class UnitStats : MonoBehaviour {
 		colliderComponent = GetComponent<Collider>();
 	}
 	
-	void Update(){
-		if(!isDead){
-			CheckDeath();
-		}
-	}
-	
 	public void takeDamage(int attackingValue){
 		int damage = attackingValue - defense;
 		life -= Mathf.Max(1, damage);
+		CheckDeath();
 	}
 
 	public void recoverLife(int lifeToRecover){

@@ -17,9 +17,12 @@ public class ControlsManager : MonoBehaviour {
 	public Button buttonToRemoveFromWidth;
 
 	bool gamePaused = false;
-	public GameObject[] objectsToShowOnPause;
+	GameObject[] objectsToShowOnPause;
 
 	void Awake () {
+		objectsToShowOnPause = GameObject.FindGameObjectsWithTag(Tags.pauseObject);
+		setObjectsToShowOnPause(false);
+
 		charactersManager = GetComponent<CharactersManager>();
 		cameraManager = GetComponent<CameraManager>();
 

@@ -4,11 +4,23 @@ using System.Collections.Generic;
 
 public class CharactersManager : MonoBehaviour {
 
+	public GameObject[] spawnPoints;
 	public GameObject[] allCharacters;
+
 	CharacterMovement[] allCharactersMovements;
 	List<CharacterMovement> selectedCharactersMovements = new List<CharacterMovement>();
 
 	void Awake () {
+		GameObject[] charactersOnMission = 
+			GameObject.FindGameObjectWithTag(Tags.charactersOnMissionList).GetComponent<CharactersOnMissionList>().getCharactersList();
+
+		allCharacters = new GameObject[Mathf.Min(spawnPoints.Length, charactersOnMission.Length)];
+
+		for(int i=0; i<allCharacters.Length; i++){
+			allCharacters[i] = 
+				(GameObject)Instantiate(charactersOnMission[i], spawnPoints[i].transform.position, spawnPoints[i].transform.rotation);
+		}
+
 		allCharactersMovements = new CharacterMovement[allCharacters.Length];
 		for(int i=0; i<allCharacters.Length; i++){
 			allCharactersMovements[i] = allCharacters[i].GetComponent<CharacterMovement>();
