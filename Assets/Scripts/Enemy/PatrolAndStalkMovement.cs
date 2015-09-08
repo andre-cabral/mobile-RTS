@@ -6,7 +6,7 @@ using System.Collections;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Attack))]
-public class PatrolAndStalkMovement : MonoBehaviour {
+public class PatrolAndStalkMovement : EnemyMovement {
 	
 	public bool moveYAxis = false;
 	
@@ -16,13 +16,8 @@ public class PatrolAndStalkMovement : MonoBehaviour {
 	float timePassedOnWaypoint = 0f;
 	private Vector3[] points;
 	private int vectorIndex = 1;
-	
-	private Vector3 lastPlayerSeenResetPosition = new Vector3(9999f,9999f,9999f);
-	public Vector3 lastPlayerSeenPosition = new Vector3(9999f,9999f,9999f);
-	private bool isSeeingPlayer = false;
+
 	private Vector3 destination;
-	
-	private GameObject lastCharacterSeen;
 	
 	private Animator enemyAnimator;
 	private HashAnimatorStalkerEnemy hashAnimator;
@@ -67,15 +62,15 @@ public class PatrolAndStalkMovement : MonoBehaviour {
 	}
 	
 	public virtual void Update () {
-		if(!enemyStats.getIsDead() && lastPlayerSeenPosition == lastPlayerSeenResetPosition && !enemyAttack.getAttackingTarget()){
+		if(!enemyStats.getIsDead() && lastPlayerSeenPosition == getLastPlayerSeenResetPosition() && !enemyAttack.getAttackingTarget()){
 			Patrol();
 		}
-		if(!enemyStats.getIsDead() && lastPlayerSeenPosition != lastPlayerSeenResetPosition && !enemyAttack.getAttackingTarget()){
+		if(!enemyStats.getIsDead() && lastPlayerSeenPosition != getLastPlayerSeenResetPosition() && !enemyAttack.getAttackingTarget()){
 			//Stalk();
 
-			if(lastCharacterSeen != null){
+			if(getLastCharacterSeen() != null){
 				if(!isLastCharacterSeenDead()){
-					enemyAttack.AttackTarget(lastCharacterSeen);
+					enemyAttack.AttackTarget(getLastCharacterSeen());
 				}else{
 					resetLastPlayerSeenPosition();
 				}
@@ -128,7 +123,7 @@ public class PatrolAndStalkMovement : MonoBehaviour {
 
 		timePassedOnWaypoint = 0f;
 
-		lastPlayerSeenPosition = lastCharacterSeen.transform.position;
+		setLastPlayerSeenPosition(getLastCharacterSeen().transform.position);
 
 		if(!moveYAxis){
 			destination = new Vector3(lastPlayerSeenPosition.x,transform.position.y,lastPlayerSeenPosition.z);
@@ -140,20 +135,13 @@ public class PatrolAndStalkMovement : MonoBehaviour {
 				agent.SetDestination(destination);
 				enemyAnimator.SetFloat(hashAnimator.velocity, agent.desiredVelocity.magnitude);
 			}
-		}else if(!isSeeingPlayer){
+		}else if(!getIsSeeingPlayer()){
 			resetLastPlayerSeenPosition();
 		}
 		
 	}
 	
-	public void FlipWithSpeed(Vector3 end, float speed){
-		Quaternion finalRotation = Quaternion.LookRotation(end - transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, Time.deltaTime * speed);
-	}
-	
-	public void SeePlayer(){
-		lastPlayerSeenPosition = lastCharacterSeen.transform.position;
-	}
+
 	//########Stalk Movement END
 	//###########################################
 	
@@ -171,44 +159,6 @@ public class PatrolAndStalkMovement : MonoBehaviour {
 	}
 	public void setAttacking(bool attacking){
 		this.attacking = attacking;
-	}
-	
-	public Vector3 getLastPlayerSeenPosition(){
-		return lastPlayerSeenPosition;
-	}
-	
-	public void setLastPlayerSeenPosition(Vector3 lastPlayerSeenPosition){
-		this.lastPlayerSeenPosition = lastPlayerSeenPosition;
-	}
-	
-	public void resetLastPlayerSeenPosition(){
-		lastPlayerSeenPosition = lastPlayerSeenResetPosition;
-	}
-	
-	public Vector3 getLastPlayerSeenResetPosition(){
-		return lastPlayerSeenResetPosition;
-	}
-	
-	public bool getIsSeeingPlayer(){
-		return isSeeingPlayer;
-	}
-	
-	public void setIsSeeingPlayer(bool isSeeingPlayer){
-		this.isSeeingPlayer = isSeeingPlayer;
-	}
-
-	public void setLastCharacterSeen(GameObject lastCharacterSeen){
-		this.lastCharacterSeen = lastCharacterSeen;
-	}
-
-	public bool isLastCharacterSeenDead(){
-		if(lastCharacterSeen == null){
-			return true;
-		}
-		if(lastCharacterSeen.GetComponent<UnitStats>().getIsDead()){
-			return true;
-		}
-		return false;
 	}
 	
 	public Vector3 getDestination(){

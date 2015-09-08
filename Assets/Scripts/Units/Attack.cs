@@ -5,6 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(UnitStats))]
 public class Attack : MonoBehaviour {
 
+	bool moveToAttack = true;
 	public GameObject projectile;
 	bool attackingTarget = false;
 	GameObject targetToAttack;
@@ -48,7 +49,10 @@ public class Attack : MonoBehaviour {
 		   || (!isRanged && !targetToAttack.GetComponent<Collider>().bounds.Intersects(GetComponent<Collider>().bounds)) ){
 			FollowTargetPosition(targetToAttack.transform.position);
 		}else{
-			navMeshAgent.Stop();
+			if(navMeshAgent.isActiveAndEnabled){
+				navMeshAgent.Stop();
+			}
+			FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);
 			if(attackDelayCount >= unitStats.attackDelay){
 				if(!isRanged){
 					MeleeAttack();
@@ -87,13 +91,15 @@ public class Attack : MonoBehaviour {
 
 
 	public void FollowTargetPosition(Vector3 point){
-		Vector3 destination;
-		if(!moveYAxis){
-			destination = new Vector3(point.x, transform.position.y, point.z);
-		}else{
-			destination = new Vector3(point.x, point.y, point.z);
+		if(moveToAttack){
+			Vector3 destination;
+			if(!moveYAxis){
+				destination = new Vector3(point.x, transform.position.y, point.z);
+			}else{
+				destination = new Vector3(point.x, point.y, point.z);
+			}
+			navMeshAgent.SetDestination(destination);
 		}
-		navMeshAgent.SetDestination(destination);
 	}
 
 	public void AttackTarget(GameObject target){
@@ -108,11 +114,25 @@ public class Attack : MonoBehaviour {
 		this.attackingTarget = attackingTarget;
 	}
 
+	public bool FlipWithSpeed(Vector3 end, float speed){
+		Quaternion finalRotation = Quaternion.LookRotation(end - transform.position);
+		transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, Time.deltaTime * speed);
+		return finalRotation == transform.rotation;
+	}
+
 	public bool getAttackingTarget(){
 		return attackingTarget;
 	}
 
 	public void setMoveYAxis(bool moveYAxis){
 		this.moveYAxis = moveYAxis;
+	}
+
+	public void setMoveToAttack(bool moveToAttack){
+		this.moveToAttack = moveToAttack;
+	}
+
+	public bool getMoveToAttack(){
+		return moveToAttack;
 	}
 }

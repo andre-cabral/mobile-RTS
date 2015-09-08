@@ -26,9 +26,7 @@ public class CharactersOnMissionManager : MonoBehaviour {
 			button.transform.SetParent(buttonsContainer.transform, false);
 			
 			
-			CharacterOnMissionTemplate characterOnMissionTemplate = button.GetComponent<CharacterOnMissionTemplate>();
-			
-			characterOnMissionTemplate.setCharacterIndex(i);
+			CharacterOnMissionTemplate characterOnMissionTemplate = button.GetComponent<CharacterOnMissionTemplate>();			
 
 			allCharacterOnMissionTemplates[i] = characterOnMissionTemplate;
 		}
@@ -43,10 +41,9 @@ public class CharactersOnMissionManager : MonoBehaviour {
 		return false;
 	}
 
-	public void AddCharacter(int index, GameObject prefab){
+	public void AddCharacter(GameObject prefab){
 		foreach(CharacterOnMissionTemplate character in allCharacterOnMissionTemplates){
 			if(character.getCharacterPrefab() == null){
-				character.setCharacterIndex(index);
 				character.setCharacterPrefab(prefab);
 				character.changeText();
 				break;

@@ -46,9 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyStats.cs" />
      <Compile Include="Assets\Scripts\Enemy\PatrolAndStalkMovement.cs" />
      <Compile Include="Assets\Scripts\Enemy\PlayerSeeingArea.cs" />
+     <Compile Include="Assets\Scripts\Enemy\StandAndAttack.cs" />
      <Compile Include="Assets\Scripts\GameController\AvailableCharacterTemplate.cs" />
      <Compile Include="Assets\Scripts\GameController\AvailableCharactersList.cs" />
      <Compile Include="Assets\Scripts\GameController\AvailableCharactersManager.cs" />
@@ -63,6 +65,7 @@
      <Compile Include="Assets\Scripts\NamesPatterns\HashAnimatorStalkerEnemy.cs" />
      <Compile Include="Assets\Scripts\NamesPatterns\Tags.cs" />
      <Compile Include="Assets\Scripts\Player\CharacterMovement.cs" />
+     <Compile Include="Assets\Scripts\Player\CharacterPrefabAndNumberAvailable.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Units\Attack.cs" />

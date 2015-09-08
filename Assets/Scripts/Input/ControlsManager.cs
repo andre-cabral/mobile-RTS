@@ -77,7 +77,7 @@ public class ControlsManager : MonoBehaviour {
 			pinching = false;
 		}
 
-#else
+//#else
 //####DESKTOP
 		//move character desktop
 		if(clickableArea.Contains(Input.mousePosition)){

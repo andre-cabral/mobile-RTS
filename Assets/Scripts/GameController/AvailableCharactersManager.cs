@@ -30,7 +30,6 @@ public class AvailableCharactersManager : MonoBehaviour {
 			AvailableCharacterTemplate availableCharacterTemplate = button.GetComponent<AvailableCharacterTemplate>();
 
 			availableCharacterTemplate.setAvailableCharactersManager(this);
-			availableCharacterTemplate.setCharacterIndex(i);
 			availableCharacterTemplate.setCharacterPrefab(allCharactersPrefabs[i]);
 
 			availableCharacterTemplate.changeText();
@@ -45,22 +44,14 @@ public class AvailableCharactersManager : MonoBehaviour {
 		}
 	}
 
-	public bool HasAvailableCharacter(int index){
-		return availableCharactersList.HasAvailableCharacter(index);
-	}
-
-	public bool AddCharacterToMission(int index){
-		bool returnedValue = availableCharactersList.AddCharacterToMission(index);
+	public bool AddCharacterToMission(PlayerStats playerStats){
+		bool returnedValue = availableCharactersList.removeOneFromCharacterAvailableQuantity(playerStats);
 		ChangeAllTextsOnTemplates();
 		return returnedValue;
 	}
 
-	public void RemoveCharacterFromMission(int index){
-		availableCharactersList.RemoveCharacterFromMission(index);
+	public void RemoveCharacterFromMission(PlayerStats playerStats){
+		availableCharactersList.AddOneToCharacterAvailableQuantity(playerStats);
 		ChangeAllTextsOnTemplates();
-	}
-
-	public int getAvailableCharacterNumber(int index){
-		return availableCharactersList.getAvailableCharacterNumber(index);
 	}
 }

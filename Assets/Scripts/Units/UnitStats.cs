@@ -10,6 +10,7 @@ public class UnitStats : MonoBehaviour {
 	public float attackDelay = 0.5f;
 	public int defense = 1;
 	public int life = 999;
+	public float lookAtEnemySpeed = 3f;
 	bool isDead = false;
 	NavMeshAgent navMeshAgent;
 	Collider colliderComponent;

@@ -5,45 +5,36 @@ public class AvailableCharactersList : MonoBehaviour {
 
 	public static AvailableCharactersList control;
 	public GameObject[] allCharactersPrefabs;
-	public int[] availableCharactersNumber;
-
+	PlayerStats[] allPlayerStats;
 
 	void Awake(){
 		if(control == null){
 			DontDestroyOnLoad(gameObject);
 			control = this;
+			allPlayerStats = new PlayerStats[allCharactersPrefabs.Length];
+			for(int i=0; i<allCharactersPrefabs.Length; i++){
+				allPlayerStats[i] = allCharactersPrefabs[i].GetComponent<PlayerStats>();
+			}
 		}else if(control != this){
 			Destroy (gameObject);
 		}
 	}
-
-	public bool HasAvailableCharacter(int index){
-		if(availableCharactersNumber[index]>0){
-			return true;
-		}else{
-			return false;
+	
+	public bool removeOneFromCharacterAvailableQuantity(PlayerStats playerStats){
+		for(int i=0; i<allPlayerStats.Length; i++){
+			if(playerStats.characterCode == allPlayerStats[i].characterCode){
+				return allPlayerStats[i].removeOneFromCharacterAvailableQuantity();
+			}
 		}
-	}
-
-	public void addOneToAvailableCharacter(int index){
-		availableCharactersNumber[index]++;
+		return false;
 	}
 	
-	public bool AddCharacterToMission(int index){
-		if(availableCharactersNumber[index]>0){
-			availableCharactersNumber[index]--;
-			return true;
-		}else{
-			return false;
+	public void AddOneToCharacterAvailableQuantity(PlayerStats playerStats){
+		for(int i=0; i<allPlayerStats.Length; i++){
+			if(playerStats.characterCode == allPlayerStats[i].characterCode){
+				allPlayerStats[i].addCharacterAvailableQuantity(1);
+			}
 		}
-	}
-	
-	public void RemoveCharacterFromMission(int index){
-		availableCharactersNumber[index]++;
-	}
-	
-	public int getAvailableCharacterNumber(int index){
-		return availableCharactersNumber[index];
 	}
 
 	public GameObject[] getAllCharactersPrefabs(){

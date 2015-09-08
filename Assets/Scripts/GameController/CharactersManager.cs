@@ -7,11 +7,13 @@ public class CharactersManager : MonoBehaviour {
 	public GameObject[] spawnPoints;
 	public GameObject[] allCharacters;
 
+	GameObject[] charactersOnMission;
+
 	CharacterMovement[] allCharactersMovements;
 	List<CharacterMovement> selectedCharactersMovements = new List<CharacterMovement>();
 
 	void Awake () {
-		GameObject[] charactersOnMission = 
+		charactersOnMission = 
 			GameObject.FindGameObjectWithTag(Tags.charactersOnMissionList).GetComponent<CharactersOnMissionList>().getCharactersList();
 
 		allCharacters = new GameObject[Mathf.Min(spawnPoints.Length, charactersOnMission.Length)];

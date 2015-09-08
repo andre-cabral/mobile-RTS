@@ -6,9 +6,8 @@ public class CharacterOnMissionTemplate : MonoBehaviour {
 
 	public Text text;
 	string originalText;
-	int characterIndex;
 	GameObject characterPrefab;
-	UnitStats unitStats;
+	PlayerStats unitStats;
 	AvailableCharactersManager availableCharactersManager;
 	
 	void Awake(){
@@ -16,13 +15,9 @@ public class CharacterOnMissionTemplate : MonoBehaviour {
 		availableCharactersManager = GameObject.FindGameObjectWithTag(Tags.availableCharactersController).GetComponent<AvailableCharactersManager>();
 	}
 	
-	public void setCharacterIndex(int characterIndex){
-		this.characterIndex = characterIndex;
-	}
-	
 	public void setCharacterPrefab(GameObject characterPrefab){
 		this.characterPrefab = characterPrefab;
-		this.unitStats = characterPrefab.GetComponent<UnitStats>();
+		this.unitStats = characterPrefab.GetComponent<PlayerStats>();
 	}
 
 	public GameObject getCharacterPrefab(){
@@ -31,7 +26,7 @@ public class CharacterOnMissionTemplate : MonoBehaviour {
 	
 	public void changeText(){
 		text.text = originalText;
-		text.text = text.text.Replace("Empty", unitStats.name);
+		text.text = text.text.Replace("Empty", unitStats.characterName);
 	}
 
 	public void resetText(){
@@ -42,7 +37,7 @@ public class CharacterOnMissionTemplate : MonoBehaviour {
 		if(characterPrefab != null){
 			characterPrefab = null;
 			resetText();
-			availableCharactersManager.RemoveCharacterFromMission(characterIndex);
+			availableCharactersManager.RemoveCharacterFromMission(unitStats);
 		}
 	}		
 

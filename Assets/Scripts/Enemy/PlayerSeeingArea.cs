@@ -4,7 +4,8 @@ using System.Collections;
 public class PlayerSeeingArea : MonoBehaviour {
 	
 	public Transform enemyTransform;
-	public PatrolAndStalkMovement stalkerNavMeshScript;
+	public EnemyMovement enemyMovement;
+	public UnitStats enemyStats;
 	//public bool canSeeStealthPlayer = false;
 	public bool needLineOfSightToGetPlayer = false;
 
@@ -12,8 +13,8 @@ public class PlayerSeeingArea : MonoBehaviour {
 		GameObject collidedObject = collider.gameObject;
 		if(collidedObject.tag == Tags.player){
 			if( /*(canSeeStealthPlayer || collidedObject.name != ClassesObjectsNames.stealth) && */
-			   stalkerNavMeshScript.getLastPlayerSeenPosition() == stalkerNavMeshScript.getLastPlayerSeenResetPosition()
-			   || stalkerNavMeshScript.isLastCharacterSeenDead()
+			   enemyMovement.getLastPlayerSeenPosition() == enemyMovement.getLastPlayerSeenResetPosition()
+			   || enemyMovement.isLastCharacterSeenDead()
 			   ){
 
 				bool canSeePlayer = true;
@@ -22,10 +23,10 @@ public class PlayerSeeingArea : MonoBehaviour {
 				}
 				
 				if(canSeePlayer){
-					stalkerNavMeshScript.setLastPlayerSeenPosition(collidedObject.transform.position);
-					stalkerNavMeshScript.setLastCharacterSeen(collidedObject);
-					if(!stalkerNavMeshScript.getIsSeeingPlayer() ){
-						stalkerNavMeshScript.setIsSeeingPlayer(true);
+					enemyMovement.setLastPlayerSeenPosition(collidedObject.transform.position);
+					enemyMovement.setLastCharacterSeen(collidedObject);
+					if(!enemyMovement.getIsSeeingPlayer() ){
+						enemyMovement.setIsSeeingPlayer(true);
 					}
 				}
 				
@@ -36,7 +37,7 @@ public class PlayerSeeingArea : MonoBehaviour {
 	void OnTriggerExit(Collider collider){
 		GameObject collidedObject = collider.gameObject;
 		if(collidedObject.tag == Tags.player){
-			stalkerNavMeshScript.setIsSeeingPlayer(false);
+			enemyMovement.setIsSeeingPlayer(false);
 		}
 	}
 	
