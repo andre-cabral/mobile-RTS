@@ -22,20 +22,26 @@ public class UnitStats : MonoBehaviour {
 	}
 	
 	public void takeDamage(int attackingValue){
-		int damage = attackingValue - defense;
+		int damage = attackingValue - ((attackingValue*defense)/100);
 		life -= Mathf.Max(1, damage);
 		CheckDeath();
+		LifeChanged();
 	}
 
 	public void recoverLife(int lifeToRecover){
 		int lifeTotalRecovered = life + lifeToRecover;
 		life = Mathf.Min(startingLife, lifeTotalRecovered);
+		LifeChanged();
 	}
 	
 	void CheckDeath(){
 		if(life <= 0){
 			DeathEffects();
 		}
+	}
+
+	void LifeChanged(){
+
 	}
 	
 	public bool getIsDead(){
