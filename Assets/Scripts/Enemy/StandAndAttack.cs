@@ -41,11 +41,8 @@ public class StandAndAttack : EnemyMovement {
 		if(getLastCharacterSeen() != null){
 			if(Vector3.Distance(transform.position, getLastCharacterSeen().transform.position) > enemyStats.attackRange){
 				enemyAttack.setAttackingTarget(false);
-				setLastPlayerSeenPosition(getLastPlayerSeenResetPosition());
+				resetLastPlayerSeenPosition();
 			}
-		}
-		if(isLastCharacterSeenDead()){
-			enemyAttack.setAttackingTarget(false);
 		}
 	}
 

@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour {
 	public Vector3 lastPlayerSeenPosition = new Vector3(9999f,9999f,9999f);
 	bool isSeeingPlayer = false;
 
-	GameObject lastCharacterSeen;
+	public GameObject lastCharacterSeen;
 
 
 	public void FlipWithSpeed(Vector3 end, float speed){

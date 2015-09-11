@@ -10,20 +10,25 @@ public class UnitStats : MonoBehaviour {
 	public float attackDelay = 0.5f;
 	public int defense = 1;
 	public int life = 999;
+	public Lifebar lifebar;
 	public float lookAtEnemySpeed = 3f;
 	bool isDead = false;
 	NavMeshAgent navMeshAgent;
 	Collider colliderComponent;
 	
-	void Awake(){
+	public virtual void Awake(){
 		life = startingLife;
 		navMeshAgent = GetComponent<NavMeshAgent>();
 		colliderComponent = GetComponent<Collider>();
 	}
 	
-	public void takeDamage(int attackingValue){
+	public virtual void takeDamage(GameObject attacker, int attackingValue){
 		int damage = attackingValue - ((attackingValue*defense)/100);
-		life -= Mathf.Max(1, damage);
+		if(Mathf.Max(1, damage) <= life){
+			life -= Mathf.Max(1, damage);
+		}else{
+			life = 0;
+		}
 		CheckDeath();
 		LifeChanged();
 	}
@@ -41,7 +46,9 @@ public class UnitStats : MonoBehaviour {
 	}
 
 	void LifeChanged(){
-
+		float lifeFloat = life;
+		float startingLifeFloat = startingLife;
+		lifebar.changePercentage(lifeFloat/startingLifeFloat);
 	}
 	
 	public bool getIsDead(){

@@ -89,10 +89,6 @@ public class ControlsManager : MonoBehaviour {
 				dragTimePassed += Time.deltaTime;
 			}
 			
-			if(Input.GetMouseButtonUp(0) && dragTimePassed < dragThreshold){
-				//Debug.Log("movechar");
-			}
-			
 			if(Input.GetMouseButtonUp(0)){
 				dragTimePassed = 0f;
 			}

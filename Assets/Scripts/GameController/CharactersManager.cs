@@ -35,13 +35,15 @@ public class CharactersManager : MonoBehaviour {
 		RaycastHit hit;
 		// Move to hit
 		if (Physics.Raycast(ray, out hit, 1000f)){
-			switch (hit.transform.gameObject.tag){
+			//the hit.collider gets the object directly clicked. If you use only the hit, you will get the parent
+			switch (hit.collider.transform.gameObject.tag){
+			/*
 			case Tags.enemy:
-				AttackWithAllSelected(hit.transform.gameObject);
+				AttackWithAllSelected(hit.collider.transform.gameObject);
 				break;
-
+			*/
 			case Tags.enemyClickArea:
-				AttackWithAllSelected(hit.transform.parent.gameObject);
+				AttackWithAllSelected(hit.collider.transform.parent.gameObject);
 				break;
 
 			case Tags.player:

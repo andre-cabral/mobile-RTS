@@ -67,7 +67,6 @@ public class PatrolAndStalkMovement : EnemyMovement {
 		}
 		if(!enemyStats.getIsDead() && lastPlayerSeenPosition != getLastPlayerSeenResetPosition() && !enemyAttack.getAttackingTarget()){
 			//Stalk();
-
 			if(getLastCharacterSeen() != null){
 				if(!isLastCharacterSeenDead()){
 					enemyAttack.AttackTarget(getLastCharacterSeen());
@@ -75,9 +74,6 @@ public class PatrolAndStalkMovement : EnemyMovement {
 					resetLastPlayerSeenPosition();
 				}
 			}
-		}
-		if(isLastCharacterSeenDead()){
-			enemyAttack.setAttackingTarget(false);
 		}
 	}
 	

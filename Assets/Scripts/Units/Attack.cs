@@ -7,7 +7,7 @@ public class Attack : MonoBehaviour {
 
 	bool moveToAttack = true;
 	public GameObject projectile;
-	bool attackingTarget = false;
+	public bool attackingTarget = false;
 	GameObject targetToAttack;
 	UnitStats targetStats;
 	UnitStats unitStats;
@@ -42,6 +42,12 @@ public class Attack : MonoBehaviour {
 		if( attackDelayCount < unitStats.attackDelay && !unitStats.getIsDead() ){
 			attackDelayCount += Time.deltaTime;
 		}
+
+		if(targetStats != null){
+			if(targetStats.getIsDead() && attackingTarget){
+				attackingTarget = false;
+			}
+		}
 	}
 
 	void AttackTargetFollow(){
@@ -52,7 +58,9 @@ public class Attack : MonoBehaviour {
 			if(navMeshAgent.isActiveAndEnabled){
 				navMeshAgent.Stop();
 			}
+
 			FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);
+			//transform.LookAt(targetToAttack.transform.position);
 			if(attackDelayCount >= unitStats.attackDelay){
 				if(!isRanged){
 					MeleeAttack();
@@ -79,14 +87,18 @@ public class Attack : MonoBehaviour {
 		if(projectile != null){
 			GameObject newProjectile = (GameObject)Instantiate(projectile, transform.position, Quaternion.identity);
 			newProjectile.transform.LookAt(targetToAttack.transform.position);
+
 			Projectile projectileScript = newProjectile.GetComponent<Projectile>();
 			projectileScript.setTargetTag(targetTag);
-			projectileScript.setAttack(unitStats.attack);
+			projectileScript.setUnitUsing(gameObject);
+			projectileScript.setUnitStats(unitStats);
+
+			projectileScript.setStartProjectile(true);
 		}
 	}
 
 	public void CauseDamageOnTarget(){
-		targetToAttack.GetComponent<UnitStats>().takeDamage(unitStats.attack);
+		targetToAttack.GetComponent<UnitStats>().takeDamage(gameObject, unitStats.attack);
 	}
 
 
@@ -110,14 +122,14 @@ public class Attack : MonoBehaviour {
 		}
 	}
 
-	public void setAttackingTarget(bool attackingTarget){
-		this.attackingTarget = attackingTarget;
-	}
-
 	public bool FlipWithSpeed(Vector3 end, float speed){
 		Quaternion finalRotation = Quaternion.LookRotation(end - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, Time.deltaTime * speed);
 		return finalRotation == transform.rotation;
+	}
+
+	public void setAttackingTarget(bool attackingTarget){
+		this.attackingTarget = attackingTarget;
 	}
 
 	public bool getAttackingTarget(){
