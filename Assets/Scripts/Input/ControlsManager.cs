@@ -30,6 +30,8 @@ public class ControlsManager : MonoBehaviour {
 		RectTransform rectTransform = buttonToRemoveFromWidth.GetComponent<RectTransform>();
 		float buttonWidth = GetWidthFromRectTransformUI(rectTransform);
 		clickableArea = new Rect(0,0,Screen.width - buttonWidth, Screen.height);
+
+		setPause(false);
 	}
 	
 	void Update () {
@@ -77,7 +79,7 @@ public class ControlsManager : MonoBehaviour {
 			pinching = false;
 		}
 
-//#else
+#else
 //####DESKTOP
 		//move character desktop
 		if(clickableArea.Contains(Input.mousePosition)){

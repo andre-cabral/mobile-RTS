@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\GameController\CharactersOnMissionManager.cs" />
      <Compile Include="Assets\Scripts\GameController\PauseAndUnpause.cs" />
      <Compile Include="Assets\Scripts\GameController\StartMissionButton.cs" />
+     <Compile Include="Assets\Scripts\GameController\UnpauseOnStart.cs" />
      <Compile Include="Assets\Scripts\GameController\goToScene.cs" />
      <Compile Include="Assets\Scripts\Input\CharacterSelectButton.cs" />
      <Compile Include="Assets\Scripts\Input\ControlsManager.cs" />
