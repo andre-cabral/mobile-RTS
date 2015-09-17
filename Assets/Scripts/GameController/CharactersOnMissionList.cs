@@ -9,6 +9,7 @@ public class CharactersOnMissionList : MonoBehaviour {
 	public GameObject[] charactersList ;
 	public int maxCharacters = 4;
 	int charactersUsed = 0;
+	bool hardCoreMode = false;
 
 	void Awake(){
 		if(control == null){
@@ -32,4 +33,11 @@ public class CharactersOnMissionList : MonoBehaviour {
 		return charactersList;
 	}
 
+	public void setHardCoreMode(bool hardCoreMode){
+		this.hardCoreMode = hardCoreMode;
+	}
+
+	public bool getHardCoreMode(){
+		return hardCoreMode;
+	}
 }

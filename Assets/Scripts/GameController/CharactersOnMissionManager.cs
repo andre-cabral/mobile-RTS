@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,9 +7,11 @@ public class CharactersOnMissionManager : MonoBehaviour {
 	List<GameObject> charactersPrefabs = new List<GameObject>();
 	public GameObject characterOnMissionPrefab;
 	public GameObject buttonsContainer;
+	public Toggle hardCoreModeToggle;
 	public int charactersOnMission = 4;
 	CharacterOnMissionTemplate[] allCharacterOnMissionTemplates;
 	CharactersOnMissionList charactersOnMissionList;
+
 
 	void Awake(){
 		charactersOnMissionList = GameObject.FindGameObjectWithTag(Tags.charactersOnMissionList).GetComponent<CharactersOnMissionList>();
@@ -65,6 +68,8 @@ public class CharactersOnMissionManager : MonoBehaviour {
 				listOfCharacters[i] = characters[i];
 			}
 			charactersOnMissionList.setCharactersList(listOfCharacters);
+
+			charactersOnMissionList.setHardCoreMode(hardCoreModeToggle.isOn);
 
 			return true;
 

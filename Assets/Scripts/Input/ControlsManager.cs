@@ -140,6 +140,11 @@ public class ControlsManager : MonoBehaviour {
 		}
 	}
 
+	public void GameOverPause(){
+		gamePaused = true;
+		Time.timeScale = 0f;
+	}
+
 	void setObjectsToShowOnPause(bool show){
 		foreach(GameObject objectToSet in objectsToShowOnPause){
 			objectToSet.SetActive(show);

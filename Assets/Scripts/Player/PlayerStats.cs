@@ -3,12 +3,24 @@ using System.Collections;
 
 public class PlayerStats : UnitStats {
 
+	public int characterAvailableStartingQuantity;
 	public int characterAvailableQuantity;
 	public string characterCode;
+	GameObject gameController;
+	PlayersCounter playersCounter;
+
+	public override void Awake(){
+		base.Awake ();
+		gameController = GameObject.FindGameObjectWithTag(Tags.gameController);
+		playersCounter = gameController.GetComponent<PlayersCounter>();
+		playersCounter.characterSpawned();
+	}
 
 	public override void DeathEffects(){
 		base.DeathEffects();
 		gameObject.tag = Tags.playerDead;
+
+		playersCounter.characterKilled();
 	}
 
 	public bool HasAvailableCharacter(){
@@ -37,5 +49,9 @@ public class PlayerStats : UnitStats {
 			return true;
 		}
 		return false;
+	}
+
+	public void resetCharacterAvailableQuantity(){
+		characterAvailableQuantity = characterAvailableStartingQuantity;
 	}
 }

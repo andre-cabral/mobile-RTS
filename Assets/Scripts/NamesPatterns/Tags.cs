@@ -17,4 +17,5 @@ public class Tags : MonoBehaviour {
 	public const string charactersOnMissionController = "CharactersOnMissionController";
 	public const string availableCharactersController = "AvailableCharactersController";
 	public const string availableCharactersList = "AvailableCharactersList";
+	public const string gameOverObject = "GameOverObject";
 }

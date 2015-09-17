@@ -59,10 +59,14 @@
      <Compile Include="Assets\Scripts\GameController\CharactersManager.cs" />
      <Compile Include="Assets\Scripts\GameController\CharactersOnMissionList.cs" />
      <Compile Include="Assets\Scripts\GameController\CharactersOnMissionManager.cs" />
+     <Compile Include="Assets\Scripts\GameController\EnemiesCounter.cs" />
      <Compile Include="Assets\Scripts\GameController\PauseAndUnpause.cs" />
+     <Compile Include="Assets\Scripts\GameController\PlayersCounter.cs" />
+     <Compile Include="Assets\Scripts\GameController\StageEnd.cs" />
      <Compile Include="Assets\Scripts\GameController\StartMissionButton.cs" />
      <Compile Include="Assets\Scripts\GameController\UnpauseOnStart.cs" />
      <Compile Include="Assets\Scripts\GameController\goToScene.cs" />
+     <Compile Include="Assets\Scripts\GameController\goToSceneExitToMenu.cs" />
      <Compile Include="Assets\Scripts\Input\CharacterSelectButton.cs" />
      <Compile Include="Assets\Scripts\Input\ControlsManager.cs" />
      <Compile Include="Assets\Scripts\NamesPatterns\HashAnimatorStalkerEnemy.cs" />

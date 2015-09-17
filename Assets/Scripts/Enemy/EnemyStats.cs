@@ -5,10 +5,16 @@ public class EnemyStats : UnitStats {
 
 	public GameObject[] objectsToDeactivateOnDeath;
 	EnemyMovement enemyMovement;
+	GameObject gameController;
+	EnemiesCounter enemiesCounter;
 
 	public override void Awake(){
 		base.Awake();
 		enemyMovement = GetComponent<EnemyMovement>();
+
+		gameController = GameObject.FindGameObjectWithTag(Tags.gameController);
+		enemiesCounter = gameController.GetComponent<EnemiesCounter>();
+		enemiesCounter.enemySpawned();
 	}
 
 	public override void DeathEffects(){
@@ -17,6 +23,7 @@ public class EnemyStats : UnitStats {
 		foreach(GameObject objToDeactivate in objectsToDeactivateOnDeath){
 			objToDeactivate.SetActive(false);
 		}
+		enemiesCounter.enemyKilled();
 	}
 
 	public override void takeDamage(GameObject attacker, int attackingValue){

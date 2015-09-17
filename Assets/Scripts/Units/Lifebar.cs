@@ -8,6 +8,7 @@ public class Lifebar : MonoBehaviour {
 	SpriteRenderer spriteRenderer;
 	public float distanceFromUnit = 1f;
 	Transform parentTransform;
+	float percentageXPosition = 0f;
 
 	void Awake () {
 		parentTransform = gameObject.transform.parent;
@@ -17,12 +18,12 @@ public class Lifebar : MonoBehaviour {
 	
 	void Update () {
 		transform.rotation = startRotation;
-		transform.position = new Vector3(parentTransform.position.x, transform.position.y, parentTransform.position.z + distanceFromUnit);
+		transform.position = new Vector3(parentTransform.position.x - percentageXPosition, transform.position.y, parentTransform.position.z + distanceFromUnit);
 	}
 
 	public void changePercentage(float newPercentage){
 		percentage = newPercentage;
-		transform.localPosition = new Vector3((1f - percentage)/2, transform.localPosition.y, transform.localPosition.z);
+		percentageXPosition = (1f - percentage)/2;
 		transform.localScale = new Vector3(percentage, transform.localScale.y, transform.localScale.z);
 		if(percentage <= 0.75f && percentage > 0.5f){
 			spriteRenderer.color = Color.yellow;
