@@ -14,6 +14,9 @@ public class EnemyStats : UnitStats {
 
 		gameController = GameObject.FindGameObjectWithTag(Tags.gameController);
 		enemiesCounter = gameController.GetComponent<EnemiesCounter>();
+	}
+
+	void Start(){
 		enemiesCounter.enemySpawned();
 	}
 

@@ -60,6 +60,8 @@
      <Compile Include="Assets\Scripts\GameController\CharactersOnMissionList.cs" />
      <Compile Include="Assets\Scripts\GameController\CharactersOnMissionManager.cs" />
      <Compile Include="Assets\Scripts\GameController\EnemiesCounter.cs" />
+     <Compile Include="Assets\Scripts\GameController\Missions\KillAllEnemiesMission.cs" />
+     <Compile Include="Assets\Scripts\GameController\Missions\Mission.cs" />
      <Compile Include="Assets\Scripts\GameController\PauseAndUnpause.cs" />
      <Compile Include="Assets\Scripts\GameController\PlayersCounter.cs" />
      <Compile Include="Assets\Scripts\GameController\StageEnd.cs" />
@@ -67,6 +69,7 @@
      <Compile Include="Assets\Scripts\GameController\UnpauseOnStart.cs" />
      <Compile Include="Assets\Scripts\GameController\goToScene.cs" />
      <Compile Include="Assets\Scripts\GameController\goToSceneExitToMenu.cs" />
+     <Compile Include="Assets\Scripts\GameController\goToSceneExitToMenuSavingPrisoners.cs" />
      <Compile Include="Assets\Scripts\Input\CharacterSelectButton.cs" />
      <Compile Include="Assets\Scripts\Input\ControlsManager.cs" />
      <Compile Include="Assets\Scripts\NamesPatterns\HashAnimatorStalkerEnemy.cs" />
@@ -75,6 +78,10 @@
      <Compile Include="Assets\Scripts\Player\CharacterPrefabAndNumberAvailable.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\Player\Prisoner.cs" />
+     <Compile Include="Assets\Scripts\Player\PrisonerUI.cs" />
+     <Compile Include="Assets\Scripts\Player\PrisonersSaved.cs" />
+     <Compile Include="Assets\Scripts\Player\SymbolOnPrisonerObject.cs" />
      <Compile Include="Assets\Scripts\Units\Attack.cs" />
      <Compile Include="Assets\Scripts\Units\Lifebar.cs" />
      <Compile Include="Assets\Scripts\Units\Projectile.cs" />

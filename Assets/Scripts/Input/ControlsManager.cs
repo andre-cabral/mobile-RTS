@@ -79,7 +79,7 @@ public class ControlsManager : MonoBehaviour {
 			pinching = false;
 		}
 
-#else
+//#else
 //####DESKTOP
 		//move character desktop
 		if(clickableArea.Contains(Input.mousePosition)){
@@ -140,7 +140,7 @@ public class ControlsManager : MonoBehaviour {
 		}
 	}
 
-	public void GameOverPause(){
+	public void StageEndPause(){
 		gamePaused = true;
 		Time.timeScale = 0f;
 	}

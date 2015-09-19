@@ -18,4 +18,6 @@ public class Tags : MonoBehaviour {
 	public const string availableCharactersController = "AvailableCharactersController";
 	public const string availableCharactersList = "AvailableCharactersList";
 	public const string gameOverObject = "GameOverObject";
+	public const string gameWinObject = "GameWinObject";
+	public const string prisoner = "Prisoner";
 }
