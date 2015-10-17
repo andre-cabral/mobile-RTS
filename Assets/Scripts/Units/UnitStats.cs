@@ -4,6 +4,7 @@ using System.Collections;
 public class UnitStats : MonoBehaviour {
 
 	public string characterName = "";
+	public GameObject spriteObject;
 	public int startingLife = 100;
 	public int attack = 1;
 	public float attackRange = 0f;

@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour {
 	public GameObject selectedObjectsToAppearContainer;
 	public bool moveYAxis = false;
 	private CharacterSelectButton characterButton;
+	Animator animator;
+	HashAnimatorUnit hashAnimatorUnit;
 	Attack playerAttack;
 	UnitStats playerStats;
 
@@ -18,6 +20,17 @@ public class CharacterMovement : MonoBehaviour {
 		playerAttack = GetComponent<Attack>();
 		playerAttack.setMoveYAxis(moveYAxis);
 		playerStats = GetComponent<UnitStats>();
+
+		if(playerStats.spriteObject != null){
+			animator = playerStats.spriteObject.GetComponent<Animator>();
+			hashAnimatorUnit = playerStats.spriteObject.GetComponent<HashAnimatorUnit>();
+		}
+	}
+
+	void Update(){
+		if(animator != null){
+			animator.SetFloat(hashAnimatorUnit.velocity, navMeshAgent.desiredVelocity.magnitude);
+		}
 	}
 
 	public void goToPoint(Vector3 point){
@@ -47,6 +60,14 @@ public class CharacterMovement : MonoBehaviour {
 
 	public void CharacterClicked(){
 		characterButton.SelectCharacter();
+	}
+
+	public void CharacterClickedWithoutDeselectingOthers(){
+		characterButton.SelectCharacterWithoutDeselectingOthers();
+	}
+
+	public void CharacterClickedDeselectAllButtons(){
+		characterButton.SetAllButtonsSelection(false);
 	}
 
 	public bool getSelected(){

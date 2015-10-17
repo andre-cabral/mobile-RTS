@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(HashAnimatorStalkerEnemy))]
 [RequireComponent(typeof(EnemyStats))]
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Attack))]
 public class StandAndAttack : EnemyMovement {
 	
 	public bool moveYAxis = false;
 	
 	private Animator enemyAnimator;
-	private HashAnimatorStalkerEnemy hashAnimator;
+	private HashAnimatorUnit hashAnimator;
 	
 	private EnemyStats enemyStats;
 
@@ -24,8 +22,10 @@ public class StandAndAttack : EnemyMovement {
 		enemyAttack.setMoveYAxis(moveYAxis);
 		enemyAttack.setMoveToAttack(false);
 
-		enemyAnimator = GetComponent<Animator>();
-		hashAnimator = GetComponent<HashAnimatorStalkerEnemy>();
+		if(enemyStats.spriteObject != null){
+			enemyAnimator = enemyStats.spriteObject.GetComponent<Animator>();
+			hashAnimator = enemyStats.spriteObject.GetComponent<HashAnimatorUnit>();
+		}
 	}
 	
 	public virtual void Update () {

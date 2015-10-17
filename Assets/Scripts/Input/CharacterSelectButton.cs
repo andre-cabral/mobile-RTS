@@ -53,7 +53,7 @@ public class CharacterSelectButton : MonoBehaviour {
 		}
 	}
 
-	void SetAllButtonsSelection(bool isSelected){
+	public void SetAllButtonsSelection(bool isSelected){
 		for(int i=0; i<characterSelectButtons.Length; i++){
 			characterSelectButtons[i].SetButtonSelected(isSelected);
 		}
@@ -64,6 +64,12 @@ public class CharacterSelectButton : MonoBehaviour {
 			SetAllButtonsSelection(false);
 			SetButtonSelected(true);
 			charactersManager.SelectOneCharacter(character);
+		}
+	}
+	public void SelectCharacterWithoutDeselectingOthers(){
+		if(!controlsManager.getGamePaused() && character != null){
+			SetButtonSelected(true);
+			charactersManager.SelectOneCharacterWithoutDeselectingOthers(character);
 		}
 	}
 	public void SelectAllCharacters(){

@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(HashAnimatorStalkerEnemy))]
 [RequireComponent(typeof(EnemyStats))]
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Attack))]
 public class PatrolAndStalkMovement : EnemyMovement {
 	
@@ -20,7 +18,7 @@ public class PatrolAndStalkMovement : EnemyMovement {
 	private Vector3 destination;
 	
 	private Animator enemyAnimator;
-	private HashAnimatorStalkerEnemy hashAnimator;
+	private HashAnimatorUnit hashAnimator;
 	
 	NavMeshAgent agent;
 	
@@ -57,11 +55,17 @@ public class PatrolAndStalkMovement : EnemyMovement {
 		enemyAttack = GetComponent<Attack>();
 		enemyAttack.setMoveYAxis(moveYAxis);
 
-		enemyAnimator = GetComponent<Animator>();
-		hashAnimator = GetComponent<HashAnimatorStalkerEnemy>();
+		if(enemyStats.spriteObject != null){
+			enemyAnimator = enemyStats.spriteObject.GetComponent<Animator>();
+			hashAnimator = enemyStats.spriteObject.GetComponent<HashAnimatorUnit>();
+		}
 	}
 	
 	public virtual void Update () {
+		if(enemyAnimator != null){
+			enemyAnimator.SetFloat(hashAnimator.velocity, agent.desiredVelocity.magnitude);
+		}
+
 		if(!enemyStats.getIsDead() && lastPlayerSeenPosition == getLastPlayerSeenResetPosition() && !enemyAttack.getAttackingTarget()){
 			Patrol();
 		}
@@ -92,7 +96,7 @@ public class PatrolAndStalkMovement : EnemyMovement {
 		if( Vector3.Distance(transform.position, destination) > distanceToChangeWaypoint ){
 			if(agent.destination != destination){
 				agent.SetDestination(destination);
-				//enemyAnimator.SetFloat(hashAnimator.velocity, agent.desiredVelocity.magnitude);
+
 			}
 		}else{
 			if(timePassedOnWaypoint >= timeOnWaypoint){
@@ -129,7 +133,6 @@ public class PatrolAndStalkMovement : EnemyMovement {
 		if(Vector3.Distance(transform.position, destination) > agent.stoppingDistance){
 			if(agent.destination != destination){
 				agent.SetDestination(destination);
-				enemyAnimator.SetFloat(hashAnimator.velocity, agent.desiredVelocity.magnitude);
 			}
 		}else if(!getIsSeeingPlayer()){
 			resetLastPlayerSeenPosition();

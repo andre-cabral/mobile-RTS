@@ -37,7 +37,7 @@ public class ControlsManager : MonoBehaviour {
 	void Update () {
 
 
-#if UNITY_ANDROID || UNITY_WP8
+#if !UNITY_IOS
 //####MOBILE exit button. IOS don't have an exit button
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			setPause(!gamePaused);
@@ -78,9 +78,9 @@ public class ControlsManager : MonoBehaviour {
 		if(Input.touchCount == 0){
 			pinching = false;
 		}
-
-//#else
-//####DESKTOP
+#endif
+#if UNITY_EDITOR || (!UNITY_ANDROID && !UNITY_WP8 && !UNITY_IOS)
+		//####DESKTOP
 		//move character desktop
 		if(clickableArea.Contains(Input.mousePosition)){
 			if (Input.GetMouseButtonDown(0)) {
