@@ -56,6 +56,7 @@ public class CharactersManager : MonoBehaviour {
 					}
 				}
 			}
+
 			if(!containsPriority && !HasElementWithTag(closestHit, Tags.wall)){
 				MoveAllSelected(closestHit[0].point);
 			}
