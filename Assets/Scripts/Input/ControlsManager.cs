@@ -14,10 +14,14 @@ public class ControlsManager : MonoBehaviour {
 	float dragTimePassed = 0f;
 
 	Rect clickableArea;
-	public Button buttonToRemoveFromWidth;
+	public Button[] allButtons;
+	CharacterSelectButton[] characterSelectButtons;
+	Rect[] buttonsRects;
 
 	bool gamePaused = false;
 	GameObject[] objectsToShowOnPause;
+
+	public Texture mytexture;
 
 	void Awake () {
 		objectsToShowOnPause = GameObject.FindGameObjectsWithTag(Tags.pauseObject);
@@ -27,15 +31,21 @@ public class ControlsManager : MonoBehaviour {
 		cameraManager = GetComponent<CameraManager>();
 
 		//get the width from the button, and set the clickable area to remove the buttons width
-		RectTransform rectTransform = buttonToRemoveFromWidth.GetComponent<RectTransform>();
+		RectTransform rectTransform = allButtons[0].GetComponent<RectTransform>();
 		float buttonWidth = GetWidthFromRectTransformUI(rectTransform);
 		clickableArea = new Rect(0,0,Screen.width - buttonWidth, Screen.height);
 
+		characterSelectButtons = new CharacterSelectButton[allButtons.Length];
+		buttonsRects = new Rect[allButtons.Length];
+		for(int i=0; i<allButtons.Length;i++){
+			characterSelectButtons[i] = allButtons[i].GetComponent<CharacterSelectButton>();
+			buttonsRects[i] = GetRectFromRectTransformUI( allButtons[i].GetComponent<RectTransform>() );
+			Debug.Log(buttonsRects[i]);
+		}
 		setPause(false);
 	}
 	
 	void Update () {
-
 
 #if !UNITY_IOS
 //####MOBILE exit button. IOS don't have an exit button
@@ -61,6 +71,25 @@ public class ControlsManager : MonoBehaviour {
 				//reset dragTimePassed
 				if (Input.GetTouch(0).phase == TouchPhase.Ended) {
 					dragTimePassed = 0f;
+				}
+			}else{
+				//start selecting buttons
+				if (Input.GetTouch(0).phase == TouchPhase.Began) {
+					CharacterSelectButton buttonTouched = CheckButtonsTouched(Input.GetTouch(0).position);
+					if(buttonTouched != null){
+							buttonTouched.DeselectAllCharacters();
+							buttonTouched.SelectCharacterWithoutDeselectingOthers();
+					}
+				}
+
+				//drag buttons
+				if (Input.GetTouch(0).phase == TouchPhase.Moved) {
+					CharacterSelectButton buttonTouched = CheckButtonsTouched(Input.GetTouch(0).position);
+					if(buttonTouched != null){
+						if(!buttonTouched.selected){
+							buttonTouched.SelectCharacterWithoutDeselectingOthers();
+						}
+					}
 				}
 			}
 		}
@@ -105,6 +134,28 @@ public class ControlsManager : MonoBehaviour {
 		rectWidth *= Screen.width;
 
 		return rectWidth;
+	}
+
+	float GetHeightFromRectTransformUI(RectTransform rectTransform){
+		//the rect is a percentage. the maximum number, 1, represents 100% from the screen width
+		//so we multiply the screen width by the rect to get the real width of the button
+		float rectHeight = rectTransform.anchorMax.y - rectTransform.anchorMin.y;
+		rectHeight *= Screen.height;
+		
+		return rectHeight;
+	}
+
+	Rect GetRectFromRectTransformUI(RectTransform rectTransform){
+		return new Rect(rectTransform.anchorMin.x*Screen.width,rectTransform.anchorMin.y*Screen.height, GetWidthFromRectTransformUI(rectTransform), GetHeightFromRectTransformUI(rectTransform));
+	}
+
+	CharacterSelectButton CheckButtonsTouched(Vector2 position){
+		for(int i=0; i<buttonsRects.Length; i++){
+			if(buttonsRects[i].Contains(position)){
+				return characterSelectButtons[i];
+			}
+		}
+		return null;
 	}
 
 	Vector2 DragMovement(Touch touch){
