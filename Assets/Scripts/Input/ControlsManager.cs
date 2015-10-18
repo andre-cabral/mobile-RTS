@@ -40,7 +40,6 @@ public class ControlsManager : MonoBehaviour {
 		for(int i=0; i<allButtons.Length;i++){
 			characterSelectButtons[i] = allButtons[i].GetComponent<CharacterSelectButton>();
 			buttonsRects[i] = GetRectFromRectTransformUI( allButtons[i].GetComponent<RectTransform>() );
-			Debug.Log(buttonsRects[i]);
 		}
 		setPause(false);
 	}
