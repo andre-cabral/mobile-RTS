@@ -59,6 +59,13 @@ public class CharacterSelectButton : MonoBehaviour {
 		}
 	}
 
+	public void DeselectAllCharacters(){
+		if(!controlsManager.getGamePaused() && character != null){
+			SetAllButtonsSelection(false);
+			charactersManager.RemoveAllFromSelected();
+		}
+	}
+
 	public void SelectCharacter(){
 		if(!controlsManager.getGamePaused() && character != null){
 			SetAllButtonsSelection(false);

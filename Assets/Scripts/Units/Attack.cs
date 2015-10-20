@@ -56,7 +56,8 @@ public class Attack : MonoBehaviour {
 			FollowTargetPosition(targetToAttack.transform.position);
 		}else{
 			if(navMeshAgent.isActiveAndEnabled){
-				navMeshAgent.Stop();
+				navMeshAgent.velocity = Vector3.zero;
+				navMeshAgent.SetDestination(transform.position);
 			}
 
 			FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);

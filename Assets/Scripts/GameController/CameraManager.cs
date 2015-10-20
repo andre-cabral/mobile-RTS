@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour {
 
 	public void ZoomCamera(float deltaMagnitudeDiff){			
 		// If the camera is orthographic...
-		if (cameraToUse.isOrthoGraphic)
+		if (cameraToUse.orthographic)
 		{
 			// ... change the orthographic size based on the change in distance between the touches.
 			// Make sure the orthographic size is within the min and maxzoom.
