@@ -11,6 +11,8 @@ public class Attack : MonoBehaviour {
 	GameObject targetToAttack;
 	UnitStats targetStats;
 	UnitStats unitStats;
+	Animator animator;
+	HashAnimatorUnit hashAnimatorUnit;
 	float attackDelayCount = 0f;
 	bool isRanged = false;
 	string targetTag;
@@ -30,6 +32,11 @@ public class Attack : MonoBehaviour {
 		}
 		if(gameObject.tag == Tags.enemy){
 			targetTag = Tags.player;
+		}
+
+		if(unitStats.spriteObject != null){
+			animator = unitStats.spriteObject.GetComponent<Animator>();
+			hashAnimatorUnit = unitStats.spriteObject.GetComponent<HashAnimatorUnit>();
 		}
 	}
 
@@ -77,9 +84,21 @@ public class Attack : MonoBehaviour {
 
 	void MeleeAttack(){
 		//play the animation
+		if(animator != null){
+			animator.SetBool(hashAnimatorUnit.attacking, true);
+		}
 
 		//the animation will call the next function, CauseDamageOnTarget (see if this will be really used)
 		CauseDamageOnTarget();
+
+		//end the animation bool
+		//used instead of trigger because in the future can be used as bool to set the point in the animation
+		//whete the damage will be caused.
+		/*
+		if(animator != null){
+			animator.SetBool(hashAnimatorUnit.attacking, false);
+		}
+		*/
 
 	}
 
