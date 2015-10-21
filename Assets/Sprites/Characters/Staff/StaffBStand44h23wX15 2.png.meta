@@ -1,24 +1,24 @@
 fileFormatVersion: 2
-guid: 95767c88066bcc14cb072ede9a301f47
-timeCreated: 1445146105
+guid: 1a77755cbcbb59d459635903dc9b70be
+timeCreated: 1445458833
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: StaffStand44h23wX15_0
-    21300002: StaffStand44h23wX15_1
-    21300004: StaffStand44h23wX15_2
-    21300006: StaffStand44h23wX15_3
-    21300008: StaffStand44h23wX15_4
-    21300010: StaffStand44h23wX15_5
-    21300012: StaffStand44h23wX15_6
-    21300014: StaffStand44h23wX15_7
-    21300016: StaffStand44h23wX15_8
-    21300018: StaffStand44h23wX15_9
-    21300020: StaffStand44h23wX15_10
-    21300022: StaffStand44h23wX15_11
-    21300024: StaffStand44h23wX15_12
-    21300026: StaffStand44h23wX15_13
-    21300028: StaffStand44h23wX15_14
+    21300000: StaffBStand44h23wX15 2_0
+    21300002: StaffBStand44h23wX15 2_1
+    21300004: StaffBStand44h23wX15 2_2
+    21300006: StaffBStand44h23wX15 2_3
+    21300008: StaffBStand44h23wX15 2_4
+    21300010: StaffBStand44h23wX15 2_5
+    21300012: StaffBStand44h23wX15 2_6
+    21300014: StaffBStand44h23wX15 2_7
+    21300016: StaffBStand44h23wX15 2_8
+    21300018: StaffBStand44h23wX15 2_9
+    21300020: StaffBStand44h23wX15 2_10
+    21300022: StaffBStand44h23wX15 2_11
+    21300024: StaffBStand44h23wX15 2_12
+    21300026: StaffBStand44h23wX15 2_13
+    21300028: StaffBStand44h23wX15 2_14
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -65,7 +65,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: StaffStand44h23wX15_0
+    - name: StaffBStand44h23wX15 2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -75,7 +75,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_1
+    - name: StaffBStand44h23wX15 2_1
       rect:
         serializedVersion: 2
         x: 23
@@ -85,7 +85,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_2
+    - name: StaffBStand44h23wX15 2_2
       rect:
         serializedVersion: 2
         x: 46
@@ -95,7 +95,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_3
+    - name: StaffBStand44h23wX15 2_3
       rect:
         serializedVersion: 2
         x: 69
@@ -105,7 +105,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_4
+    - name: StaffBStand44h23wX15 2_4
       rect:
         serializedVersion: 2
         x: 92
@@ -115,7 +115,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_5
+    - name: StaffBStand44h23wX15 2_5
       rect:
         serializedVersion: 2
         x: 115
@@ -125,7 +125,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_6
+    - name: StaffBStand44h23wX15 2_6
       rect:
         serializedVersion: 2
         x: 138
@@ -135,7 +135,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_7
+    - name: StaffBStand44h23wX15 2_7
       rect:
         serializedVersion: 2
         x: 161
@@ -145,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_8
+    - name: StaffBStand44h23wX15 2_8
       rect:
         serializedVersion: 2
         x: 184
@@ -155,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_9
+    - name: StaffBStand44h23wX15 2_9
       rect:
         serializedVersion: 2
         x: 207
@@ -165,7 +165,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_10
+    - name: StaffBStand44h23wX15 2_10
       rect:
         serializedVersion: 2
         x: 230
@@ -175,7 +175,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_11
+    - name: StaffBStand44h23wX15 2_11
       rect:
         serializedVersion: 2
         x: 253
@@ -185,7 +185,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_12
+    - name: StaffBStand44h23wX15 2_12
       rect:
         serializedVersion: 2
         x: 276
@@ -195,7 +195,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_13
+    - name: StaffBStand44h23wX15 2_13
       rect:
         serializedVersion: 2
         x: 299
@@ -205,7 +205,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: StaffStand44h23wX15_14
+    - name: StaffBStand44h23wX15 2_14
       rect:
         serializedVersion: 2
         x: 322
