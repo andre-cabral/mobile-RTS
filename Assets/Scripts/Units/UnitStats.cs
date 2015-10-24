@@ -16,11 +16,18 @@ public class UnitStats : MonoBehaviour {
 	bool isDead = false;
 	NavMeshAgent navMeshAgent;
 	Collider colliderComponent;
+	Animator animator;
+	HashAnimatorUnit hashAnimatorUnit;
 	
 	public virtual void Awake(){
 		life = startingLife;
 		navMeshAgent = GetComponent<NavMeshAgent>();
 		colliderComponent = GetComponent<Collider>();
+
+		if(spriteObject != null){
+			animator = spriteObject.GetComponent<Animator>();
+			hashAnimatorUnit = spriteObject.GetComponent<HashAnimatorUnit>();
+		}
 	}
 	
 	public virtual void takeDamage(GameObject attacker, int attackingValue){
@@ -60,5 +67,10 @@ public class UnitStats : MonoBehaviour {
 		isDead = true;
 		navMeshAgent.enabled = false;
 		colliderComponent.enabled = false;
+
+		//play the animation
+		if(animator != null){
+			animator.SetBool(hashAnimatorUnit.isDead, true);
+		}
 	}
 }

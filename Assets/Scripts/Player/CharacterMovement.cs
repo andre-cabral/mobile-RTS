@@ -7,6 +7,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	NavMeshAgent navMeshAgent;
 	bool selected = false;
+	public float minimumVelocityToStop = 0.1f;
 	public GameObject selectedObjectsToAppearContainer;
 	public bool moveYAxis = false;
 	private CharacterSelectButton characterButton;
@@ -14,6 +15,7 @@ public class CharacterMovement : MonoBehaviour {
 	HashAnimatorUnit hashAnimatorUnit;
 	Attack playerAttack;
 	UnitStats playerStats;
+	bool isMoving = false;
 
 	void Awake(){
 		navMeshAgent = GetComponent<NavMeshAgent>();
@@ -28,8 +30,22 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	void Update(){
-		if(animator != null){
-			animator.SetFloat(hashAnimatorUnit.velocity, navMeshAgent.desiredVelocity.magnitude);
+		if(!playerStats.getIsDead()){
+			if(!isMoving && navMeshAgent.velocity.magnitude > 0){
+				//navMeshAgent.avoidancePriority = 50;
+				isMoving = true;
+			}
+			
+			if(isMoving &&  navMeshAgent.velocity.magnitude <= minimumVelocityToStop){
+				navMeshAgent.velocity = Vector3.zero;
+				navMeshAgent.destination = transform.position;
+				//navMeshAgent.avoidancePriority = 0;
+				isMoving = false;
+			}
+
+			if(animator != null){
+				animator.SetFloat(hashAnimatorUnit.velocity, navMeshAgent.velocity.magnitude);
+			}
 		}
 	}
 

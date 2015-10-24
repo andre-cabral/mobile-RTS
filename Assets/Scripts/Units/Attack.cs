@@ -41,6 +41,8 @@ public class Attack : MonoBehaviour {
 	}
 
 	void Update(){
+
+
 		if( attackingTarget && !unitStats.getIsDead() ){
 			if(!targetStats.getIsDead()){
 				AttackTargetFollow();
@@ -103,6 +105,11 @@ public class Attack : MonoBehaviour {
 	}
 
 	void RangedAttack(){
+		//play the animation
+		if(animator != null){
+			animator.SetBool(hashAnimatorUnit.attacking, true);
+		}
+
 		//Throw the projectile code
 		if(projectile != null){
 			GameObject newProjectile = (GameObject)Instantiate(projectile, transform.position, Quaternion.identity);
