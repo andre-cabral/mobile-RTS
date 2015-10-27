@@ -22,7 +22,7 @@ public class EnemyStats : UnitStats {
 
 	public override void DeathEffects(){
 		base.DeathEffects();
-		gameObject.tag = Tags.enemyrDead;
+		gameObject.tag = Tags.enemyDead;
 		foreach(GameObject objToDeactivate in objectsToDeactivateOnDeath){
 			objToDeactivate.SetActive(false);
 		}

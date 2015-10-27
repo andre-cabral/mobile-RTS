@@ -166,8 +166,10 @@ public class CharactersManager : MonoBehaviour {
 
 	
 	public void AddToSelected(CharacterMovement characterMovement){
-		selectedCharactersMovements.Add(characterMovement);
-		characterMovement.SetCharacterSelection(true);
+		if(!characterMovement.getIsDead()){
+			selectedCharactersMovements.Add(characterMovement);
+			characterMovement.SetCharacterSelection(true);
+		}
 	}
 	public void RemoveFromSelected(CharacterMovement characterMovement){
 		selectedCharactersMovements.Remove(characterMovement);

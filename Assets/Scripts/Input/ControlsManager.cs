@@ -110,6 +110,9 @@ public class ControlsManager : MonoBehaviour {
 #if UNITY_EDITOR || (!UNITY_ANDROID && !UNITY_WP8 && !UNITY_IOS)
 		//####DESKTOP
 		//move character desktop
+		if(Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f){
+			cameraManager.DragCamera(new Vector2(-Input.GetAxis("Horizontal"), -Input.GetAxis("Vertical")));
+		}
 		if(clickableArea.Contains(Input.mousePosition)){
 			if (Input.GetMouseButtonDown(0)) {
 				charactersManager.CheckClickedPoint(Input.mousePosition);

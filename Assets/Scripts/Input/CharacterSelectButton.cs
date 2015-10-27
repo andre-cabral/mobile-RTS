@@ -43,19 +43,36 @@ public class CharacterSelectButton : MonoBehaviour {
 		}
 	}
 
+	public void CharacterDeathButtonDeselect(){
+		SetButtonSelected(false);
+		button.interactable = false;
+		DeselectCharacter();
+	}
+
 	public void SetButtonSelected(bool isSelected){
-		if(isSelected){
-			selected = true;
-			button.colors = pressed;
-		}else{
-			selected = false;
-			button.colors = normal;
+		if(!controlsManager.getGamePaused() && character != null){
+			if(!character.getIsDead()){
+				if(isSelected){
+					selected = true;
+					button.colors = pressed;
+				}else{
+					selected = false;
+					button.colors = normal;
+				}
+			}
 		}
 	}
 
 	public void SetAllButtonsSelection(bool isSelected){
 		for(int i=0; i<characterSelectButtons.Length; i++){
 			characterSelectButtons[i].SetButtonSelected(isSelected);
+		}
+	}
+
+	public void DeselectCharacter(){
+		if(!controlsManager.getGamePaused() && character != null){
+			SetButtonSelected(false);
+			charactersManager.RemoveFromSelected(character);
 		}
 	}
 

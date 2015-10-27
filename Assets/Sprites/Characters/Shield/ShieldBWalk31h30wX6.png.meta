@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d9483d129fb73a747a70ff1099cd4cd9
-timeCreated: 1445723471
+timeCreated: 1445902439
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,8 +63,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ShieldBWalk31h30wX6_1
       rect:
@@ -73,8 +73,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ShieldBWalk31h30wX6_2
       rect:
@@ -83,8 +83,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ShieldBWalk31h30wX6_3
       rect:
@@ -93,8 +93,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ShieldBWalk31h30wX6_4
       rect:
@@ -103,8 +103,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ShieldBWalk31h30wX6_5
       rect:
@@ -113,8 +113,8 @@ TextureImporter:
         y: 0
         width: 30
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

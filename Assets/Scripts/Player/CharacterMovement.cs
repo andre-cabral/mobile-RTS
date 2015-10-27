@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour {
 	public float minimumVelocityToStop = 0.1f;
 	public GameObject selectedObjectsToAppearContainer;
 	public bool moveYAxis = false;
+	public GameObject playerClickArea;
 	private CharacterSelectButton characterButton;
 	Animator animator;
 	HashAnimatorUnit hashAnimatorUnit;
@@ -63,6 +64,11 @@ public class CharacterMovement : MonoBehaviour {
 		}
 	}
 
+	public void CharacterDeathEffects(){
+		playerClickArea.SetActive(false);
+		characterButton.CharacterDeathButtonDeselect();
+	}
+
 	public void AttackTarget(GameObject enemy){
 		if( !playerStats.getIsDead() ){
 			playerAttack.AttackTarget(enemy);
@@ -83,18 +89,25 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	public void CharacterClickedDeselectAllButtons(){
-		characterButton.SetAllButtonsSelection(false);
+		characterButton.DeselectAllCharacters();
 	}
 
 	public bool getSelected(){
 		return selected;
 	}
 
+	public CharacterSelectButton getCharacterButton(){
+		return characterButton;
+	}
 	public void setCharacterButton(CharacterSelectButton characterButton){
 		this.characterButton = characterButton;
 	}
 
 	public Attack getPlayerAttack(){
 		return playerAttack;
+	}
+
+	public bool getIsDead(){
+		return playerStats.getIsDead();
 	}
 }

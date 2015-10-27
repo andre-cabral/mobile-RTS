@@ -7,6 +7,7 @@ public class HashAnimatorUnit : MonoBehaviour {
 	public int attacking;
 	public int facingDown;
 	public int isDead;
+	public int deathAnimationNumber;
 
 
 	void Awake() {
@@ -14,5 +15,6 @@ public class HashAnimatorUnit : MonoBehaviour {
 		attacking = Animator.StringToHash("Attacking");
 		facingDown = Animator.StringToHash("FacingDown");
 		isDead = Animator.StringToHash("IsDead");
+		deathAnimationNumber = Animator.StringToHash("DeathAnimationNumber");
 	}
 }

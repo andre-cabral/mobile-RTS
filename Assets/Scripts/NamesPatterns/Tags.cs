@@ -11,7 +11,7 @@ public class Tags : MonoBehaviour {
 	public const string characterSpawnPoint = "CharacterSpawnPoint";
 	public const string floor = "Floor";
 	public const string enemy = "Enemy";
-	public const string enemyrDead = "EnemyDead";
+	public const string enemyDead = "EnemyDead";
 	public const string enemyClickArea = "EnemyClickArea";
 	public const string wall = "Wall";
 	public const string pauseObject = "PauseObject";

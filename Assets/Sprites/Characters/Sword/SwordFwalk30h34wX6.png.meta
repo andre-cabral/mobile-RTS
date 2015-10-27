@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: be9208bcc35b46e4a9b4920539e0b681
-timeCreated: 1445145834
+timeCreated: 1445902550
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,8 +63,8 @@ TextureImporter:
         y: 0
         width: 34
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwordFwalk30h34wX6_1
       rect:
@@ -73,8 +73,8 @@ TextureImporter:
         y: 0
         width: 34
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwordFwalk30h34wX6_2
       rect:
@@ -83,8 +83,8 @@ TextureImporter:
         y: 0
         width: 34
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwordFwalk30h34wX6_3
       rect:
@@ -93,8 +93,8 @@ TextureImporter:
         y: 0
         width: 34
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwordFwalk30h34wX6_4
       rect:
@@ -103,8 +103,8 @@ TextureImporter:
         y: 0
         width: 34
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SwordFwalk30h34wX6_5
       rect:
@@ -113,8 +113,8 @@ TextureImporter:
         y: 0
         width: 34
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

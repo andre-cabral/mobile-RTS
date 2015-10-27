@@ -14,6 +14,7 @@ public class UnitStats : MonoBehaviour {
 	public Lifebar lifebar;
 	public float lookAtEnemySpeed = 3f;
 	bool isDead = false;
+	const int maxDeathAnimations = 2;
 	NavMeshAgent navMeshAgent;
 	Collider colliderComponent;
 	Animator animator;
@@ -71,6 +72,7 @@ public class UnitStats : MonoBehaviour {
 		//play the animation
 		if(animator != null){
 			animator.SetBool(hashAnimatorUnit.isDead, true);
+			animator.SetInteger(hashAnimatorUnit.deathAnimationNumber, Random.Range(0, maxDeathAnimations));
 		}
 	}
 }

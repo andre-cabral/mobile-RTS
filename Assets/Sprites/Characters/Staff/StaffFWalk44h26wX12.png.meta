@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 58b5c91dc9a66104281b9e1cf93d1bc0
-timeCreated: 1445458898
+timeCreated: 1445902517
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,8 +69,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_1
       rect:
@@ -79,8 +79,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_2
       rect:
@@ -89,8 +89,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_3
       rect:
@@ -99,8 +99,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_4
       rect:
@@ -109,8 +109,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_5
       rect:
@@ -119,8 +119,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_6
       rect:
@@ -129,8 +129,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_7
       rect:
@@ -139,8 +139,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_8
       rect:
@@ -149,8 +149,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_9
       rect:
@@ -159,8 +159,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_10
       rect:
@@ -169,8 +169,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFWalk44h26wX12_11
       rect:
@@ -179,8 +179,8 @@ TextureImporter:
         y: 0
         width: 26
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

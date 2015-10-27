@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65f3e065e1b565e49829accff78bf1a0
-timeCreated: 1445458871
+timeCreated: 1445902504
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -72,8 +72,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_1
       rect:
@@ -82,8 +82,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_2
       rect:
@@ -92,8 +92,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_3
       rect:
@@ -102,8 +102,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_4
       rect:
@@ -112,8 +112,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_5
       rect:
@@ -122,8 +122,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_6
       rect:
@@ -132,8 +132,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_7
       rect:
@@ -142,8 +142,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_8
       rect:
@@ -152,8 +152,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_9
       rect:
@@ -162,8 +162,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_10
       rect:
@@ -172,8 +172,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_11
       rect:
@@ -182,8 +182,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_12
       rect:
@@ -192,8 +192,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_13
       rect:
@@ -202,8 +202,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: StaffFStand44h23wX15_14
       rect:
@@ -212,8 +212,8 @@ TextureImporter:
         y: 0
         width: 23
         height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

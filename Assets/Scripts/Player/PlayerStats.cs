@@ -7,6 +7,7 @@ public class PlayerStats : UnitStats {
 	public int characterAvailableQuantity;
 	public string characterCode;
 	public Sprite characterSymbolWhenPrisoner;
+	CharacterMovement characterMovement;
 	GameObject gameController;
 	PlayersCounter playersCounter;
 
@@ -14,12 +15,15 @@ public class PlayerStats : UnitStats {
 		base.Awake ();
 		gameController = GameObject.FindGameObjectWithTag(Tags.gameController);
 		playersCounter = gameController.GetComponent<PlayersCounter>();
+		characterMovement = GetComponent<CharacterMovement>();
 		playersCounter.characterSpawned();
 	}
 
 	public override void DeathEffects(){
 		base.DeathEffects();
 		gameObject.tag = Tags.playerDead;
+
+		characterMovement.CharacterDeathEffects();
 
 		playersCounter.characterKilled();
 	}
