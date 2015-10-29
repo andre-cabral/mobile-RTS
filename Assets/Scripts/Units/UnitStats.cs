@@ -5,6 +5,9 @@ public class UnitStats : MonoBehaviour {
 
 	public string characterName = "";
 	public GameObject spriteObject;
+	float speed;
+	float speedReduction = 0;
+	float speedReductionDivider = 1;
 	public int startingLife = 100;
 	public int attack = 1;
 	public float attackRange = 0f;
@@ -25,10 +28,39 @@ public class UnitStats : MonoBehaviour {
 		navMeshAgent = GetComponent<NavMeshAgent>();
 		colliderComponent = GetComponent<Collider>();
 
+		speed = navMeshAgent.speed;
+
 		if(spriteObject != null){
 			animator = spriteObject.GetComponent<Animator>();
 			hashAnimatorUnit = spriteObject.GetComponent<HashAnimatorUnit>();
 		}
+	}
+
+	public void ReduceSpeedWithDivider(float speedToReduce){
+		speedReductionDivider += speedToReduce;
+		SpeedChange();
+	}
+
+	public void AddSpeedWithDivider(float speedToReduce){
+		speedReductionDivider -= speedToReduce;
+		SpeedChange();
+	}
+
+	public void ReduceSpeed(float speedToReduce){
+		speedReduction += speedToReduce;
+		SpeedChange();
+	}
+
+	public void AddSpeed(float speedToAdd){
+		speedReduction -= speedToAdd;
+		SpeedChange();
+	}
+
+	void SpeedChange(){
+		if(speedReductionDivider == 0f){
+			speedReductionDivider = 1f;
+		}
+		navMeshAgent.speed = (speed - speedReduction)/speedReductionDivider;
 	}
 	
 	public virtual void takeDamage(GameObject attacker, int attackingValue){
