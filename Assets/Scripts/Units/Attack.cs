@@ -8,6 +8,7 @@ public class Attack : MonoBehaviour {
 	bool moveToAttack = true;
 	public GameObject projectile;
 	public bool attackingTarget = false;
+	public Transform projectileSpawnPoint;
 	GameObject targetToAttack;
 	UnitStats targetStats;
 	UnitStats unitStats;
@@ -32,6 +33,10 @@ public class Attack : MonoBehaviour {
 		}
 		if(gameObject.tag == Tags.enemy){
 			targetTag = Tags.player;
+		}
+
+		if(projectileSpawnPoint == null){
+			projectileSpawnPoint = transform;
 		}
 
 		if(unitStats.spriteObject != null){
@@ -112,7 +117,7 @@ public class Attack : MonoBehaviour {
 
 		//Throw the projectile code
 		if(projectile != null){
-			GameObject newProjectile = (GameObject)Instantiate(projectile, transform.position, Quaternion.identity);
+			GameObject newProjectile = (GameObject)Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
 			newProjectile.transform.LookAt(targetToAttack.transform.position);
 
 			Projectile projectileScript = newProjectile.GetComponent<Projectile>();
