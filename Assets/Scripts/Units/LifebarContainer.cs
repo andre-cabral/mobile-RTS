@@ -12,7 +12,7 @@ public class LifebarContainer : MonoBehaviour {
 		startRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Quaternion.identity.y, Quaternion.identity.z);
 	}
 	
-	void Update () {
+	void LateUpdate () {
 		transform.rotation = startRotation;
 		transform.position = new Vector3(parentTransform.position.x, transform.position.y, parentTransform.position.z + distanceFromUnit);
 	}

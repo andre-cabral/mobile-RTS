@@ -74,13 +74,15 @@ public class Attack : MonoBehaviour {
 				navMeshAgent.SetDestination(transform.position);
 			}
 
-			FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);
+
 			//transform.LookAt(targetToAttack.transform.position);
 			if(attackDelayCount >= unitStats.attackDelay){
 				if(!isRanged){
+					FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);
 					MeleeAttack();
 					attackDelayCount = 0f;
 				}else{
+					FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);
 					RangedAttack();
 					attackDelayCount = 0f;
 				}
@@ -155,8 +157,12 @@ public class Attack : MonoBehaviour {
 	}
 
 	public bool FlipWithSpeed(Vector3 end, float speed){
+
 		Quaternion finalRotation = Quaternion.LookRotation(end - transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, Time.deltaTime * speed);
+		if(finalRotation != transform.rotation){
+			//transform.rotation = finalRotation;
+			transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, Time.deltaTime * speed);
+		}
 		return finalRotation == transform.rotation;
 	}
 

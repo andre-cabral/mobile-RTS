@@ -16,7 +16,7 @@ public class Lifebar : MonoBehaviour {
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
-	void Update () {
+	void LateUpdate () {
 		transform.rotation = startRotation;
 		transform.position = new Vector3(parentTransform.position.x - percentageXPosition, transform.position.y, parentTransform.position.z + distanceFromUnit);
 	}

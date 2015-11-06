@@ -11,7 +11,7 @@ public class DontRotateAndDontMoveObjectGlobal : MonoBehaviour {
 		startPosition = transform.position;
 	}
 	
-	void Update () {
+	void LateUpdate () {
 		transform.rotation = startRotation;
 		transform.position = startPosition;
 	}

@@ -9,7 +9,7 @@ public class DontRotateObjectUsingLocalRotation : MonoBehaviour {
 		startRotation = transform.localRotation;
 	}
 	
-	void Update () {
+	void LateUpdate () {
 		transform.rotation = startRotation;
 	}
 }

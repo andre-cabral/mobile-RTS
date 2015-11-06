@@ -63,7 +63,7 @@ public class PatrolAndStalkMovement : EnemyMovement {
 	
 	public virtual void Update () {
 		if(enemyAnimator != null){
-			enemyAnimator.SetFloat(hashAnimator.velocity, agent.desiredVelocity.magnitude);
+			enemyAnimator.SetFloat(hashAnimator.velocity, agent.velocity.magnitude);
 		}
 
 		if(!enemyStats.getIsDead() && lastPlayerSeenPosition == getLastPlayerSeenResetPosition() && !enemyAttack.getAttackingTarget()){
