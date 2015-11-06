@@ -10,8 +10,7 @@ public class ControlsManager : MonoBehaviour {
 	CharactersManager charactersManager;
 	CameraManager cameraManager;
 	bool pinching = false;
-	public float dragThreshold = 90f;
-	float dragThresholdWithDpi= 0f;
+	public float dragThresholdTime = 0.05f;
 	float dragTimePassed = 0f;
 
 	Rect clickableArea;
@@ -43,8 +42,6 @@ public class ControlsManager : MonoBehaviour {
 			buttonsRects[i] = GetRectFromRectTransformUI( allButtons[i].GetComponent<RectTransform>() );
 		}
 		setPause(false);
-
-		dragThresholdWithDpi = dragThreshold/Screen.dpi;
 	}
 	
 	void Update () {
@@ -62,12 +59,14 @@ public class ControlsManager : MonoBehaviour {
 			if(clickableArea.Contains(Input.GetTouch(0).position)){
 				//move camera mobile
 				if (Input.GetTouch(0).phase == TouchPhase.Moved) {
-					cameraManager.DragCamera( DragMovement(Input.GetTouch(0)) );
+					/*if(dragTimePassed >= dragThresholdTime){*/
+						cameraManager.DragCamera( DragMovement(Input.GetTouch(0)) );
+					/*}*/
 					dragTimePassed += Time.deltaTime;
 				}
 
 				//move character mobile
-				if (Input.GetTouch(0).phase == TouchPhase.Ended && dragTimePassed < dragThresholdWithDpi) {
+				if (Input.GetTouch(0).phase == TouchPhase.Ended && dragTimePassed < dragThresholdTime) {
 					charactersManager.CheckClickedPoint(Input.GetTouch(0).position);
 				}
 				//reset dragTimePassed
