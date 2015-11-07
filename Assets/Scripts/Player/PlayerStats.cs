@@ -10,6 +10,7 @@ public class PlayerStats : UnitStats {
 	CharacterMovement characterMovement;
 	GameObject gameController;
 	PlayersCounter playersCounter;
+	bool isPrisoner = false;
 
 	public override void Awake(){
 		base.Awake ();
@@ -58,5 +59,13 @@ public class PlayerStats : UnitStats {
 
 	public void resetCharacterAvailableQuantity(){
 		characterAvailableQuantity = characterAvailableStartingQuantity;
+	}
+
+	public void setIsPrisoner(bool isPrisoner){
+		this.isPrisoner = isPrisoner;
+	}
+
+	public bool getIsPrisoner(){
+		return isPrisoner;
 	}
 }

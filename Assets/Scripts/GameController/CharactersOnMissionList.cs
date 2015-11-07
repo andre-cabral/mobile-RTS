@@ -29,6 +29,24 @@ public class CharactersOnMissionList : MonoBehaviour {
 		}
 	}
 
+	public bool addCharacter(GameObject newCharacter){
+		if(maxCharacters >= charactersList.Length+1){
+			GameObject[] newCharactersList = new GameObject[charactersList.Length+1];
+			for(int i=0; i < charactersList.Length; i ++){
+				newCharactersList[i] = charactersList[i];
+			}
+			newCharactersList[newCharactersList.Length-1] = newCharacter;
+			setCharactersList(newCharactersList);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public bool canAddCharacter(){
+		return maxCharacters >= charactersList.Length+1;
+	}
+
 	public GameObject[] getCharactersList(){
 		return charactersList;
 	}

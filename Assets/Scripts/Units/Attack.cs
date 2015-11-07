@@ -74,15 +74,16 @@ public class Attack : MonoBehaviour {
 				navMeshAgent.SetDestination(transform.position);
 			}
 
-
+			if(transform.position != targetToAttack.transform.position){
+				FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);
+			}
 			//transform.LookAt(targetToAttack.transform.position);
 			if(attackDelayCount >= unitStats.attackDelay){
 				if(!isRanged){
-					FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);
+
 					MeleeAttack();
 					attackDelayCount = 0f;
 				}else{
-					FlipWithSpeed(targetToAttack.transform.position, unitStats.lookAtEnemySpeed);
 					RangedAttack();
 					attackDelayCount = 0f;
 				}

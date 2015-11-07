@@ -23,22 +23,37 @@ public class CharacterSelectButton : MonoBehaviour {
 			characterSelectButtons[i] = buttons[i].GetComponent<CharacterSelectButton>();
 		}
 
+		if(charactersManager.getAllButtons() == null){
+			charactersManager.setAllButtons(characterSelectButtons);
+		}
+
 		controlsManager = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<ControlsManager>();
 
+
 		button = GetComponent<Button>();
+
 		normal = button.colors;
 		normal.normalColor = button.colors.normalColor;
 		pressed = button.colors;
 		pressed.normalColor = button.colors.pressedColor;
 		pressed.highlightedColor = button.colors.pressedColor;
+		
+		button.interactable = false;
 	}
 
 	void Start(){
+		SetButtonCharacter();
+	}
+
+	public void SetButtonCharacter(){
 		GameObject[] allCharacters = charactersManager.GetAllCharacters();
 		if(characterNumber-1 >= 0 && characterNumber-1 < allCharacters.Length){
 			if(allCharacters[characterNumber - 1] != null){
 				character = allCharacters[characterNumber - 1].GetComponent<CharacterMovement>();
-				character.setCharacterButton(this);
+				if(character.getCharacterButton() == null){
+					character.setCharacterButton(this);
+					button.interactable = true;
+				}
 			}
 		}
 	}

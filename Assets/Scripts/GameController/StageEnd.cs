@@ -30,12 +30,17 @@ public class StageEnd : MonoBehaviour {
 		for(int i = 0; i<array.Length; i++){
 			PlayerStats playerStats = array[i].GetComponent<PlayerStats>();
 			if( !charactersOnMissionList.getHardCoreMode() ){
-				availableCharactersList.AddOneToCharacterAvailableQuantity(playerStats);
-			}else{
-				if( !playerStats.getIsDead() ){
+				if(!playerStats.getIsPrisoner() || savePrisoners){
 					availableCharactersList.AddOneToCharacterAvailableQuantity(playerStats);
 				}
+			}else{
+				if( !playerStats.getIsDead() ){
+					if(!playerStats.getIsPrisoner() || savePrisoners){
+						availableCharactersList.AddOneToCharacterAvailableQuantity(playerStats);
+					}
+				}
 			}
+			/*
 			if(savePrisoners && !playerStats.getIsDead()){
 				PrisonersSaved prisonersSavedScript = array[i].GetComponent<PrisonersSaved>();
 				List<GameObject> prisonersSaved = prisonersSavedScript.getPrisonersSaved();
@@ -43,6 +48,7 @@ public class StageEnd : MonoBehaviour {
 					availableCharactersList.AddOneToCharacterAvailableQuantity(prisoner.GetComponent<PlayerStats>());
 				}
 			}
+			*/
 			array[i] = null;
 		}
 	}

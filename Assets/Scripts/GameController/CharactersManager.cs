@@ -8,6 +8,7 @@ public class CharactersManager : MonoBehaviour {
 	public GameObject[] allCharacters;
 
 	GameObject[] charactersOnMission;
+	CharacterSelectButton[] allButtons;
 
 	CharacterMovement[] allCharactersMovements;
 	List<CharacterMovement> selectedCharactersMovements = new List<CharacterMovement>();
@@ -27,6 +28,29 @@ public class CharactersManager : MonoBehaviour {
 		for(int i=0; i<allCharacters.Length; i++){
 			allCharactersMovements[i] = allCharacters[i].GetComponent<CharacterMovement>();
 		}
+	}
+
+	public GameObject AddNewCharacter(GameObject newCharacter, Vector3 newCharacterPosition, Quaternion newCharacterRotation){		
+		GameObject[] oldAllCharacters = allCharacters;
+
+		allCharacters = new GameObject[oldAllCharacters.Length+1];
+		
+		for(int i=0; i<oldAllCharacters.Length; i++){
+			allCharacters[i] = oldAllCharacters[i];
+		}
+
+		allCharacters[allCharacters.Length-1] = (GameObject)Instantiate(newCharacter, newCharacterPosition, newCharacterRotation);
+		
+		allCharactersMovements = new CharacterMovement[allCharacters.Length];
+		for(int i=0; i<allCharacters.Length; i++){
+			allCharactersMovements[i] = allCharacters[i].GetComponent<CharacterMovement>();
+		}
+
+		foreach(CharacterSelectButton button in allButtons){
+			button.SetButtonCharacter();
+		}
+
+		return allCharacters[allCharacters.Length-1];
 	}
 
 	public void CheckClickedPoint(Vector3 point){
@@ -184,5 +208,13 @@ public class CharactersManager : MonoBehaviour {
 
 	public GameObject[] GetAllCharacters(){
 		return allCharacters;
+	}
+
+	public CharacterSelectButton[] getAllButtons(){
+		return allButtons;
+	}
+
+	public void setAllButtons(CharacterSelectButton[] allButtons){
+		this.allButtons = allButtons;
 	}
 }
