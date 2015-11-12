@@ -37,8 +37,10 @@ public class CharacterSelectButton : MonoBehaviour {
 		pressed = button.colors;
 		pressed.normalColor = button.colors.pressedColor;
 		pressed.highlightedColor = button.colors.pressedColor;
-		
-		button.interactable = false;
+
+		if(characterNumber != 0){
+			button.interactable = false;
+		}
 	}
 
 	void Start(){

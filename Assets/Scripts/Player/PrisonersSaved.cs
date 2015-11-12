@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class PrisonersSaved : MonoBehaviour {
 
-	public SpriteRenderer[] prisonerUIs;
 	List<GameObject> prisonersSaved = new List<GameObject>();
 	CharactersOnMissionList charactersOnMissionList;
 	CharactersManager charactersManager;
@@ -23,15 +22,6 @@ public class PrisonersSaved : MonoBehaviour {
 		}else{
 			return false;
 		}
-		/*
-		if(prisonersSaved.Count < prisonerUIs.Length){
-			prisonersSaved.Add(prisoner);
-			prisonerUIs[prisonersSaved.Count - 1].sprite = prisoner.GetComponent<PlayerStats>().characterSymbolWhenPrisoner;
-			return true;
-		}else{
-			return false;
-		}
-		*/
 	}
 
 	public List<GameObject> getPrisonersSaved(){

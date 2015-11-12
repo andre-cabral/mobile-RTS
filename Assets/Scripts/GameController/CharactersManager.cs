@@ -94,6 +94,7 @@ public class CharactersManager : MonoBehaviour {
 				}
 			}
 
+			/*
 			if(containsPriority && HasElementWithTag(closestHit, Tags.playerClickArea)){
 				closestHit = RemoveElementsWithoutTag(closestHit, Tags.playerClickArea);
 				if (closestHit.Count > 0){
@@ -106,6 +107,7 @@ public class CharactersManager : MonoBehaviour {
 					}
 				}
 			}
+			*/
 		}
 
 
@@ -138,8 +140,8 @@ public class CharactersManager : MonoBehaviour {
 
 	bool CheckRaycastHitPriority(RaycastHit hitToCheck){
 		return 
-			hitToCheck.collider.transform.gameObject.tag == Tags.enemyClickArea || 
-			hitToCheck.collider.transform.gameObject.tag == Tags.playerClickArea;
+			hitToCheck.collider.transform.gameObject.tag == Tags.enemyClickArea;
+				//|| hitToCheck.collider.transform.gameObject.tag == Tags.playerClickArea;
 	}
 
 	bool HasElementWithTag(List<RaycastHit> list, string tag){

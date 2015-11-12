@@ -10,7 +10,6 @@ public class CameraManager : MonoBehaviour {
 	public float minZoom = 4f;
 	public float maxZoom = 20f;
 	public float dragSpeed = 90f;
-	float dragSpeedWithDpi = 0f;
 	float dragSpeedWithZoom = 0f;
 	float zoomMedium = 0f;
 	public float dragMinX;
@@ -28,16 +27,10 @@ public class CameraManager : MonoBehaviour {
 		text = GameObject.FindGameObjectWithTag("debugtext").GetComponent<Text>();
 		//
 
-		zoomSpeedWithDpi = zoomSpeed/Screen.dpi;
-		dragSpeedWithDpi = dragSpeed/Screen.dpi;
-
 		if (cameraToUse.orthographic){
 			zoomMedium = (minZoom+maxZoom)/2;
 			ChangeDragSpeedWithZoom(cameraToUse.orthographicSize);
-		}else{
-			dragSpeedWithZoom = dragSpeedWithDpi;
 		}
-
 
 	}
 
@@ -45,13 +38,13 @@ public class CameraManager : MonoBehaviour {
 	public void DragCamera(Vector2 drag){
 
 		//
-		text.text = drag.ToString() + "\ndpi: " + Screen.dpi + "\nspeed:" + dragSpeedWithZoom;
+		text.text = drag.normalized.ToString() + "\ndpi: " + Screen.dpi + "\nspeed:" + dragSpeedWithZoom + "\nspeed zoom:" + zoomSpeed;
 		//
 
 		cameraToUse.transform.position =
-			new Vector3(Mathf.Clamp(cameraToUse.transform.position.x - (drag.x * dragSpeedWithZoom), dragMinX, dragMaxX),
+			new Vector3(Mathf.Clamp(cameraToUse.transform.position.x - (drag.normalized.x * dragSpeedWithZoom), dragMinX, dragMaxX),
 			            cameraToUse.transform.position.y, 
-			            Mathf.Clamp(cameraToUse.transform.position.z - (drag.y * dragSpeedWithZoom), dragMinY, dragMaxY));
+			            Mathf.Clamp(cameraToUse.transform.position.z - (drag.normalized.y * dragSpeedWithZoom), dragMinY, dragMaxY));
 	}
 
 	public void ZoomCamera(float deltaMagnitudeDiff){			
@@ -71,13 +64,13 @@ public class CameraManager : MonoBehaviour {
 			cameraToUse.transform.localPosition = 
 				new Vector3(cameraToUse.transform.localPosition.x, 
 				            cameraToUse.transform.localPosition.y, 
-				            Mathf.Clamp(cameraToUse.transform.localPosition.z + (deltaMagnitudeDiff * zoomSpeedWithDpi), minZoom, maxZoom));
+				            Mathf.Clamp(cameraToUse.transform.localPosition.z + (deltaMagnitudeDiff * zoomSpeed), minZoom, maxZoom));
 		}
 
 
 	}
 
 	void ChangeDragSpeedWithZoom(float zoomOrthographicSize){
-		dragSpeedWithZoom = dragSpeedWithDpi * (zoomOrthographicSize/zoomMedium);
+		dragSpeedWithZoom = zoomOrthographicSize/zoomMedium;
 	}
 }

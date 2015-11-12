@@ -10,7 +10,6 @@ public class CharacterMovement : MonoBehaviour {
 	public float minimumVelocityToStop = 0.1f;
 	public GameObject selectedObjectsToAppearContainer;
 	public bool moveYAxis = false;
-	public GameObject playerClickArea;
 	private CharacterSelectButton characterButton;
 	Animator animator;
 	HashAnimatorUnit hashAnimatorUnit;
@@ -65,7 +64,6 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	public void CharacterDeathEffects(){
-		playerClickArea.SetActive(false);
 		characterButton.CharacterDeathButtonDeselect();
 	}
 
