@@ -15,6 +15,7 @@ public class UnitStats : MonoBehaviour {
 	public int defense = 1;
 	public int life = 999;
 	public Lifebar lifebar;
+	public GameObject[] objectsToHideOnDeath;
 	public float lookAtEnemySpeed = 3f;
 	bool isDead = false;
 	const int maxDeathAnimations = 2;
@@ -100,6 +101,10 @@ public class UnitStats : MonoBehaviour {
 		isDead = true;
 		navMeshAgent.enabled = false;
 		colliderComponent.enabled = false;
+
+		foreach(GameObject objectToHide in objectsToHideOnDeath){
+			objectToHide.SetActive(false);
+		}
 
 		//play the animation
 		if(animator != null){

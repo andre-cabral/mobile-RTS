@@ -6,6 +6,9 @@ public class PlayerStats : UnitStats {
 	public int characterAvailableStartingQuantity;
 	public int characterAvailableQuantity;
 	public string characterCode;
+	public Sprite buttonSprite;
+	public Sprite buttonSelectedSprite;
+	public Sprite buttonDeathSprite;
 	CharacterMovement characterMovement;
 	GameObject gameController;
 	PlayersCounter playersCounter;

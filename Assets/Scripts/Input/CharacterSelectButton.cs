@@ -10,8 +10,9 @@ public class CharacterSelectButton : MonoBehaviour {
 	public bool selected = false;
 	CharacterSelectButton[] characterSelectButtons;
 	Button button;
-	ColorBlock normal = new ColorBlock();
-	ColorBlock pressed = new ColorBlock();
+	Sprite buttonSprite;
+	Sprite buttonSelectedSprite;
+	Sprite buttonDeathSprite;
 
 	ControlsManager controlsManager;
 
@@ -31,13 +32,7 @@ public class CharacterSelectButton : MonoBehaviour {
 
 
 		button = GetComponent<Button>();
-
-		normal = button.colors;
-		normal.normalColor = button.colors.normalColor;
-		pressed = button.colors;
-		pressed.normalColor = button.colors.pressedColor;
-		pressed.highlightedColor = button.colors.pressedColor;
-
+		
 		if(characterNumber != 0){
 			button.interactable = false;
 		}
@@ -55,6 +50,13 @@ public class CharacterSelectButton : MonoBehaviour {
 				if(character.getCharacterButton() == null){
 					character.setCharacterButton(this);
 					button.interactable = true;
+
+					PlayerStats playerStats  = character.gameObject.GetComponent<PlayerStats>();
+					buttonSprite = playerStats.buttonSprite;
+					buttonSelectedSprite = playerStats.buttonSelectedSprite;
+					buttonDeathSprite = playerStats.buttonDeathSprite;
+
+					button.image.sprite = buttonSprite;
 				}
 			}
 		}
@@ -63,6 +65,7 @@ public class CharacterSelectButton : MonoBehaviour {
 	public void CharacterDeathButtonDeselect(){
 		SetButtonSelected(false);
 		button.interactable = false;
+		button.image.sprite = buttonDeathSprite;
 		DeselectCharacter();
 	}
 
@@ -71,10 +74,10 @@ public class CharacterSelectButton : MonoBehaviour {
 			if(!character.getIsDead()){
 				if(isSelected){
 					selected = true;
-					button.colors = pressed;
+					button.image.sprite = buttonSelectedSprite;
 				}else{
 					selected = false;
-					button.colors = normal;
+					button.image.sprite = buttonSprite;
 				}
 			}
 		}
