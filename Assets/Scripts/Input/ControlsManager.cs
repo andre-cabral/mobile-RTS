@@ -163,12 +163,32 @@ public class ControlsManager : MonoBehaviour {
 	}
 
 	Vector2 DragMovement(Touch touch){
+
+		float screenAdjuster = 1f;
+		
+		if(touch.deltaTime != 0){
+			screenAdjuster = Time.deltaTime / touch.deltaTime;
+		}else{
+			screenAdjuster = 1f;
+		}
+
 		Vector2 currentDrag = new Vector2();
 		currentDrag = touch.position - (touch.position - touch.deltaPosition);
-		return currentDrag;
+
+
+
+		return currentDrag * screenAdjuster;
 	}
 	
 	float PinchMovement(Touch touchZero, Touch touchOne){
+		float screenAdjuster = 1f;
+		
+		if(touchZero.deltaTime != 0){
+			screenAdjuster = Time.deltaTime / touchZero.deltaTime;
+		}else{
+			screenAdjuster = 1f;
+		}
+
 		// Find the position in the previous frame of each touch.
 		Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
 		Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
@@ -180,7 +200,7 @@ public class ControlsManager : MonoBehaviour {
 		// Find the difference in the distances between each frame.
 		float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
-		return deltaMagnitudeDiff;
+		return deltaMagnitudeDiff * screenAdjuster;
 	}
 
 	public void setPause(bool pause){

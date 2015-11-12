@@ -6,7 +6,6 @@ public class CameraManager : MonoBehaviour {
 
 	public Camera cameraToUse;
 	public float zoomSpeed = 90f;
-	float zoomSpeedWithDpi = 0f;
 	public float minZoom = 4f;
 	public float maxZoom = 20f;
 	public float dragSpeed = 90f;
@@ -42,9 +41,9 @@ public class CameraManager : MonoBehaviour {
 		//
 
 		cameraToUse.transform.position =
-			new Vector3(Mathf.Clamp(cameraToUse.transform.position.x - (drag.normalized.x * dragSpeedWithZoom), dragMinX, dragMaxX),
+			new Vector3(Mathf.Clamp(cameraToUse.transform.position.x - (drag.x * dragSpeedWithZoom), dragMinX, dragMaxX),
 			            cameraToUse.transform.position.y, 
-			            Mathf.Clamp(cameraToUse.transform.position.z - (drag.normalized.y * dragSpeedWithZoom), dragMinY, dragMaxY));
+			            Mathf.Clamp(cameraToUse.transform.position.z - (drag.y * dragSpeedWithZoom), dragMinY, dragMaxY));
 	}
 
 	public void ZoomCamera(float deltaMagnitudeDiff){			
@@ -53,7 +52,7 @@ public class CameraManager : MonoBehaviour {
 		{
 			// ... change the orthographic size based on the change in distance between the touches.
 			// Make sure the orthographic size is within the min and maxzoom.
-			cameraToUse.orthographicSize = Mathf.Clamp(cameraToUse.orthographicSize + (deltaMagnitudeDiff * zoomSpeedWithDpi), minZoom, maxZoom);
+			cameraToUse.orthographicSize = Mathf.Clamp(cameraToUse.orthographicSize + (deltaMagnitudeDiff * zoomSpeed), minZoom, maxZoom);
 
 			ChangeDragSpeedWithZoom(cameraToUse.orthographicSize);
 		}
