@@ -32,10 +32,6 @@ public class CharacterSelectButton : MonoBehaviour {
 
 
 		button = GetComponent<Button>();
-		
-		if(characterNumber != 0){
-			button.interactable = false;
-		}
 	}
 
 	void Start(){

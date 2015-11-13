@@ -5,12 +5,12 @@ using System.Collections;
 public class CameraManager : MonoBehaviour {
 
 	public Camera cameraToUse;
-	public float zoomSpeed = 90f;
+	public float zoomSpeed = 0.5f;
 	public float minZoom = 4f;
 	public float maxZoom = 20f;
-	public float dragSpeed = 90f;
+	public float dragSpeed = 0.5f;
 	float dragSpeedWithZoom = 0f;
-	float zoomMedium = 0f;
+	public float orthographicSizeCalibrated = 8.4f;
 	public float dragMinX;
 	public float dragMaxX;
 	public float dragMinY;
@@ -27,7 +27,7 @@ public class CameraManager : MonoBehaviour {
 		//
 
 		if (cameraToUse.orthographic){
-			zoomMedium = (minZoom+maxZoom)/2;
+			//zoomMedium = (minZoom+maxZoom)/2;
 			ChangeDragSpeedWithZoom(cameraToUse.orthographicSize);
 		}
 
@@ -70,6 +70,6 @@ public class CameraManager : MonoBehaviour {
 	}
 
 	void ChangeDragSpeedWithZoom(float zoomOrthographicSize){
-		dragSpeedWithZoom = zoomOrthographicSize/zoomMedium;
+		dragSpeedWithZoom = dragSpeed * zoomOrthographicSize/orthographicSizeCalibrated;
 	}
 }

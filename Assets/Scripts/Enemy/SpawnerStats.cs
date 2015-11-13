@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyStats : UnitStats {
+public class SpawnerStats : UnitStats {
 
 	public GameObject[] objectsToDeactivateOnDeath;
 	public bool destroyOnDeath = false;

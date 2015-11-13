@@ -75,6 +75,12 @@ public class UnitStats : MonoBehaviour {
 		LifeChanged();
 	}
 
+	public void setLife(int life){
+		this.life = life;
+		CheckDeath();
+		LifeChanged();
+	}
+
 	public void recoverLife(int lifeToRecover){
 		int lifeTotalRecovered = life + lifeToRecover;
 		life = Mathf.Min(startingLife, lifeTotalRecovered);
