@@ -12,6 +12,12 @@ public class ControlsManager : MonoBehaviour {
 	bool pinching = false;
 	public float dragThresholdTime = 0.05f;
 	float dragTimePassed = 0f;
+	bool touchStarted = false;
+	bool touchMoved = false;
+
+	float screenWidth = (float)Screen.width/100f;
+	//multiply by screen proportion to make the screen move equally even using a percentage
+	float screenHeight = ((float)Screen.height*((float)Screen.width/(float)Screen.height))/100f;
 
 	Rect clickableArea;
 	public Button[] allButtons;
@@ -22,6 +28,10 @@ public class ControlsManager : MonoBehaviour {
 	GameObject[] objectsToShowOnPause;
 
 	public Texture mytexture;
+
+	//
+	Text text;
+	//
 
 	void Awake () {
 		objectsToShowOnPause = GameObject.FindGameObjectsWithTag(Tags.pauseObject);
@@ -42,6 +52,10 @@ public class ControlsManager : MonoBehaviour {
 			buttonsRects[i] = GetRectFromRectTransformUI( allButtons[i].GetComponent<RectTransform>() );
 		}
 		setPause(false);
+
+		//
+		text = GameObject.FindGameObjectWithTag("debugtext").GetComponent<Text>();
+		//
 	}
 	
 	void Update () {
@@ -57,22 +71,34 @@ public class ControlsManager : MonoBehaviour {
 //####MOBILE
 		if(Input.touchCount == 1 && !pinching){
 			if(clickableArea.Contains(Input.GetTouch(0).position)){
+				if (Input.GetTouch(0).phase == TouchPhase.Began) {
+					touchStarted = true;
+				}
+
+				if(touchStarted){
+					dragTimePassed += Time.deltaTime;
+				}
+				
 				//move camera mobile
 				if (Input.GetTouch(0).phase == TouchPhase.Moved) {
+					touchMoved = true;
 					/*if(dragTimePassed >= dragThresholdTime){*/
 						cameraManager.DragCamera( DragMovement(Input.GetTouch(0)) );
 					/*}*/
-					dragTimePassed += Time.deltaTime;
 				}
 
-				//move character mobile
-				if (Input.GetTouch(0).phase == TouchPhase.Ended && dragTimePassed < dragThresholdTime) {
+				//move character mobile after threshold time
+				/*
+				if (touchStarted && !touchMoved && dragTimePassed >= dragThresholdTime) {
 					charactersManager.CheckClickedPoint(Input.GetTouch(0).position);
 				}
-				//reset dragTimePassed
-				if (Input.GetTouch(0).phase == TouchPhase.Ended) {
-					dragTimePassed = 0f;
+				*/
+
+				//move character mobile
+				if (Input.GetTouch(0).phase == TouchPhase.Ended && !touchMoved /*&& dragTimePassed < dragThresholdTime*/) {
+					charactersManager.CheckClickedPoint(Input.GetTouch(0).position);
 				}
+
 			}else{
 				//start selecting buttons
 				if (Input.GetTouch(0).phase == TouchPhase.Began) {
@@ -92,6 +118,8 @@ public class ControlsManager : MonoBehaviour {
 						}
 					}
 				}
+
+
 			}
 		}
 		//Zoom mobile
@@ -107,6 +135,11 @@ public class ControlsManager : MonoBehaviour {
 		}
 		if(Input.touchCount == 0){
 			pinching = false;
+
+			//Drag variables
+			dragTimePassed = 0f;
+			touchStarted = false;
+			touchMoved = false;
 		}
 #endif
 #if UNITY_EDITOR || (!UNITY_ANDROID && !UNITY_WP8 && !UNITY_IOS)
@@ -172,12 +205,20 @@ public class ControlsManager : MonoBehaviour {
 			screenAdjuster = 1f;
 		}
 
-		Vector2 currentDrag = new Vector2();
-		currentDrag = touch.position - (touch.position - touch.deltaPosition);
+		Vector2 touchPosition = new Vector2 (touch.position.x/screenWidth, touch.position.y/screenHeight);
+		Vector2 touchOldPosition = touch.position - (touch.deltaPosition /* * screenAdjuster*/); //new Vector2 (touch.deltaPosition.x/screenWidth, touch.deltaPosition.y/screenHeight);
+		touchOldPosition = new Vector2(touchOldPosition.x/screenWidth, touchOldPosition.y/screenHeight);
 
 
+		Vector2 currentDrag = touchPosition - touchOldPosition;
 
-		return currentDrag * screenAdjuster;
+		//currentDrag = new Vector2(currentDrag.x, currentDrag.y);
+
+		//
+		text.text = touch.position.ToString() + "\ntouchDelta:" + touch.deltaPosition.ToString() + /*"\nscreenAdjuster" + screenAdjuster + "\ntouchDelta*screenAdjuster" + (touch.deltaPosition*screenAdjuster).ToString() +*/"\ncurrent drag:"+currentDrag.ToString()+ "\npositionTouch" + touchPosition.ToString() + "\nold:" + touchOldPosition.ToString();
+		//
+
+		return currentDrag  /* *screenAdjuster */;
 	}
 	
 	float PinchMovement(Touch touchZero, Touch touchOne){
@@ -191,16 +232,21 @@ public class ControlsManager : MonoBehaviour {
 
 		// Find the position in the previous frame of each touch.
 		Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+		touchZeroPrevPos = new Vector2(touchZeroPrevPos.x/screenWidth, touchZeroPrevPos.y/screenHeight);
 		Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-		
+		touchOnePrevPos = new Vector2(touchOnePrevPos.x/screenWidth, touchOnePrevPos.y/screenHeight);
+
+		Vector2 touchZeroPosition = new Vector2(touchZero.position.x/screenWidth, touchZero.position.y/screenHeight);
+		Vector2 touchOnePosition= new Vector2(touchOne.position.x/screenWidth, touchOne.position.y/screenHeight);
+
 		// Find the magnitude of the vector (the distance) between the touches in each frame.
 		float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-		float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+		float touchDeltaMag = (touchZeroPosition - touchOnePosition).magnitude;
 		
 		// Find the difference in the distances between each frame.
 		float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
-		return deltaMagnitudeDiff * screenAdjuster;
+		return deltaMagnitudeDiff  /* *screenAdjuster*/;
 	}
 
 	public void setPause(bool pause){

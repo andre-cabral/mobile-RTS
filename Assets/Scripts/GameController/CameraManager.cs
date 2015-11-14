@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour {
 	public float zoomSpeed = 0.5f;
 	public float minZoom = 4f;
 	public float maxZoom = 20f;
-	public float dragSpeed = 0.5f;
+	public float dragSpeed = 1f;
 	float dragSpeedWithZoom = 0f;
 	public float orthographicSizeCalibrated = 8.4f;
 	public float dragMinX;
@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour {
 	public void Awake(){
 
 		//
-		text = GameObject.FindGameObjectWithTag("debugtext").GetComponent<Text>();
+		text = GameObject.FindGameObjectWithTag("debugtext2").GetComponent<Text>();
 		//
 
 		if (cameraToUse.orthographic){
@@ -37,7 +37,7 @@ public class CameraManager : MonoBehaviour {
 	public void DragCamera(Vector2 drag){
 
 		//
-		text.text = drag.normalized.ToString() + "\ndpi: " + Screen.dpi + "\nspeed:" + dragSpeedWithZoom + "\nspeed zoom:" + zoomSpeed;
+		text.text = drag.ToString() + "\ndpi: " + Screen.dpi + "\nspeed:" + dragSpeedWithZoom + "\nspeed zoom:" + zoomSpeed;
 		//
 
 		cameraToUse.transform.position =
