@@ -206,7 +206,7 @@ public class ControlsManager : MonoBehaviour {
 		}
 
 		Vector2 touchPosition = new Vector2 (touch.position.x/screenWidth, touch.position.y/screenHeight);
-		Vector2 touchOldPosition = touch.position - (touch.deltaPosition /* * screenAdjuster*/); //new Vector2 (touch.deltaPosition.x/screenWidth, touch.deltaPosition.y/screenHeight);
+		Vector2 touchOldPosition = touch.position - (touch.deltaPosition  * screenAdjuster); //new Vector2 (touch.deltaPosition.x/screenWidth, touch.deltaPosition.y/screenHeight);
 		touchOldPosition = new Vector2(touchOldPosition.x/screenWidth, touchOldPosition.y/screenHeight);
 
 
@@ -215,7 +215,7 @@ public class ControlsManager : MonoBehaviour {
 		//currentDrag = new Vector2(currentDrag.x, currentDrag.y);
 
 		//
-		text.text = touch.position.ToString() + "\ntouchDelta:" + touch.deltaPosition.ToString() + /*"\nscreenAdjuster" + screenAdjuster + "\ntouchDelta*screenAdjuster" + (touch.deltaPosition*screenAdjuster).ToString() +*/"\ncurrent drag:"+currentDrag.ToString()+ "\npositionTouch" + touchPosition.ToString() + "\nold:" + touchOldPosition.ToString();
+		text.text = touch.position.ToString() + "\ntouchDelta:" + touch.deltaPosition.ToString() + "\nscreenAdjuster" + screenAdjuster + "\ntouchDelta*screenAdjuster" + (touch.deltaPosition*screenAdjuster).ToString() +"\ncurrent drag:"+currentDrag.ToString()+ "\npositionTouch" + touchPosition.ToString() + "\nold:" + touchOldPosition.ToString();
 		//
 
 		return currentDrag  /* *screenAdjuster */;
