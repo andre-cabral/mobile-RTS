@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CameraManager : MonoBehaviour {
 
-	public Camera cameraToUse;
+	Camera cameraToUse;
 	public float zoomSpeed = 0.5f;
 	public float minZoom = 4f;
 	public float maxZoom = 20f;
@@ -25,6 +25,8 @@ public class CameraManager : MonoBehaviour {
 		//
 		text = GameObject.FindGameObjectWithTag("debugtext2").GetComponent<Text>();
 		//
+
+		cameraToUse = Camera.main;
 
 		if (cameraToUse.orthographic){
 			//zoomMedium = (minZoom+maxZoom)/2;

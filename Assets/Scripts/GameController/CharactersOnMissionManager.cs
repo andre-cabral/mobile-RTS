@@ -8,6 +8,7 @@ public class CharactersOnMissionManager : MonoBehaviour {
 	public GameObject characterOnMissionPrefab;
 	public GameObject buttonsContainer;
 	public Toggle hardCoreModeToggle;
+	public Toggle buttonsOnLeft;
 	public int charactersOnMission = 4;
 	CharacterOnMissionTemplate[] allCharacterOnMissionTemplates;
 	CharactersOnMissionList charactersOnMissionList;
@@ -70,6 +71,8 @@ public class CharactersOnMissionManager : MonoBehaviour {
 			charactersOnMissionList.setCharactersList(listOfCharacters);
 
 			charactersOnMissionList.setHardCoreMode(hardCoreModeToggle.isOn);
+
+			charactersOnMissionList.setButtonsOnLeft(buttonsOnLeft.isOn);
 
 			return true;
 

@@ -10,6 +10,7 @@ public class CharactersOnMissionList : MonoBehaviour {
 	public int maxCharacters = 4;
 	int charactersUsed = 0;
 	bool hardCoreMode = false;
+	bool buttonsOnLeft = true;
 
 	void Awake(){
 		if(control == null){
@@ -57,5 +58,13 @@ public class CharactersOnMissionList : MonoBehaviour {
 
 	public bool getHardCoreMode(){
 		return hardCoreMode;
+	}
+
+	public void setButtonsOnLeft(bool buttonsOnLeft){
+		this.buttonsOnLeft = buttonsOnLeft;
+	}
+
+	public bool getButtonsOnLeft(){
+		return buttonsOnLeft;
 	}
 }
