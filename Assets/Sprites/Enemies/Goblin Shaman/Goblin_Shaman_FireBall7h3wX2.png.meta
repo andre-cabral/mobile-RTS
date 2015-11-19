@@ -1,9 +1,11 @@
 fileFormatVersion: 2
 guid: 765ad7a0c59b758428b6acfabcd708aa
-timeCreated: 1446599773
+timeCreated: 1447904111
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Goblin_Shaman_FireBall7h3wX2_0
+    21300002: Goblin_Shaman_FireBall7h3wX2_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,7 +28,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -38,7 +40,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +51,27 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Goblin_Shaman_FireBall7h3wX2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 3
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Goblin_Shaman_FireBall7h3wX2_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 3
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

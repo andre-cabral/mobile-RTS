@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(UnitStats))]
 public class Attack : MonoBehaviour {
 
 	bool moveToAttack = true;
+	public bool isAreaAttack = false;
 	public GameObject projectile;
 	public bool attackingTarget = false;
 	public Transform projectileSpawnPoint;
@@ -19,6 +21,7 @@ public class Attack : MonoBehaviour {
 	string targetTag;
 	NavMeshAgent navMeshAgent;
 	bool moveYAxis = false;
+	List<GameObject> targetsOnArea = new List<GameObject>();
 
 	void Awake(){
 		navMeshAgent = GetComponent<NavMeshAgent>();
@@ -46,20 +49,34 @@ public class Attack : MonoBehaviour {
 	}
 
 	void Update(){
+		if(!isAreaAttack){
+			if( attackingTarget && !unitStats.getIsDead() ){
 
+				if(!targetStats.getIsDead()){
+					AttackTargetFollow();
+				}
+				if( attackDelayCount < unitStats.attackDelay && !unitStats.getIsDead() ){
+					attackDelayCount += Time.deltaTime;
+				}
 
-		if( attackingTarget && !unitStats.getIsDead() ){
-			if(!targetStats.getIsDead()){
-				AttackTargetFollow();
+				if(targetStats != null){
+					if(targetStats.getIsDead() && attackingTarget){
+						attackingTarget = false;
+					}
+				}
 			}
-		}
-		if( attackDelayCount < unitStats.attackDelay && !unitStats.getIsDead() ){
-			attackDelayCount += Time.deltaTime;
-		}
+		}else{
+			if( attackingTarget && !unitStats.getIsDead() ){
+				if(targetsOnArea.Count > 0){
+					AreaAttackWithoutFollow();
+				}
 
-		if(targetStats != null){
-			if(targetStats.getIsDead() && attackingTarget){
-				attackingTarget = false;
+				if( attackDelayCount < unitStats.attackDelay && targetsOnArea.Count > 0 ){
+					attackDelayCount += Time.deltaTime;
+				}
+				if(targetsOnArea.Count <= 0 && attackingTarget){
+					attackingTarget = false;
+				}
 			}
 		}
 	}
@@ -90,6 +107,14 @@ public class Attack : MonoBehaviour {
 			}
 		}
 
+	}
+
+	void AreaAttackWithoutFollow(){
+		if(attackDelayCount >= unitStats.attackDelay){
+
+			AreaAttack();
+			attackDelayCount = 0f;
+		}
 	}
 
 	void MeleeAttack(){
@@ -132,8 +157,44 @@ public class Attack : MonoBehaviour {
 		}
 	}
 
+	void AreaAttack(){
+		if(targetsOnArea.Count > 0){
+		
+			List<GameObject> newTargetsOnArea = new List<GameObject>();
+			foreach(GameObject specificTarget in targetsOnArea){
+				if(specificTarget.tag == targetTag){
+					newTargetsOnArea.Add(specificTarget);
+				}
+			}
+			targetsOnArea = newTargetsOnArea;
+		
+
+
+			foreach(GameObject specificTarget in targetsOnArea){
+				//intantiate a projectile without collisions on targets
+				if(projectile != null){
+					GameObject newProjectile = (GameObject)Instantiate(projectile, specificTarget.transform.position, Quaternion.identity);
+				}
+
+				CauseDamageOnSpecificTarget(specificTarget);
+			}
+
+			//play the animation if there is at least one target
+			if(animator != null){
+				animator.SetBool(hashAnimatorUnit.attacking, true);
+			}
+		}
+
+	}
+
 	public void CauseDamageOnTarget(){
 		targetToAttack.GetComponent<UnitStats>().takeDamage(gameObject, unitStats.attack);
+	}
+
+	public void CauseDamageOnSpecificTarget(GameObject specificTarget){
+		if(specificTarget.tag == targetTag){
+			specificTarget.GetComponent<UnitStats>().takeDamage(gameObject, unitStats.attack);
+		}
 	}
 
 
@@ -185,5 +246,26 @@ public class Attack : MonoBehaviour {
 
 	public bool getMoveToAttack(){
 		return moveToAttack;
+	}
+
+	public void addTargetOnArea(GameObject newTarget){
+		if(newTarget.tag == targetTag){
+			targetsOnArea.Add(newTarget);
+		}
+	}
+
+	public void removeTargetOnArea(GameObject newTarget){
+		targetsOnArea.Remove(newTarget);
+		if(targetsOnArea.Count <= 0){
+			attackingTarget = false;
+		}
+	}
+
+	public void clearTargetsOnArea(){
+		targetsOnArea.Clear();
+	}
+
+	public int numberOfTargetsOnArea(){
+		return targetsOnArea.Count;
 	}
 }
