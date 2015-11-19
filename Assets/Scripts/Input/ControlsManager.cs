@@ -15,6 +15,9 @@ public class ControlsManager : MonoBehaviour {
 	bool touchStarted = false;
 	bool touchMoved = false;
 
+	CharactersOnMissionList charactersOnMissionList;
+	bool buttonsOnLeft = false;
+
 	float screenWidth = (float)Screen.width/100f;
 	//multiply by screen proportion to make the screen move equally even using a percentage
 	float screenHeight = ((float)Screen.height*((float)Screen.width/(float)Screen.height))/100f;
@@ -27,31 +30,44 @@ public class ControlsManager : MonoBehaviour {
 	bool gamePaused = false;
 	GameObject[] objectsToShowOnPause;
 
+	float anchorMinLeft = 0f;
+	float anchorMaxLeft = 0f;
+
+	float anchorMinRight = 0f;
+	float anchorMaxRight = 0f;
+
+
 	public Texture mytexture;
 
 	//
 	Text text;
 	//
 
-	void Awake () {
+	void Start () {
 		objectsToShowOnPause = GameObject.FindGameObjectsWithTag(Tags.pauseObject);
 		setObjectsToShowOnPause(false);
 
 		charactersManager = GetComponent<CharactersManager>();
 		cameraManager = GetComponent<CameraManager>();
 
-		//get the width from the button, and set the clickable area to remove the buttons width
-		RectTransform rectTransform = allButtons[0].GetComponent<RectTransform>();
-		float buttonWidth = GetWidthFromRectTransformUI(rectTransform);
-		clickableArea = new Rect(0,0,Screen.width - buttonWidth, Screen.height);
+		RectTransform rectTransformOneButton = allButtons[0].GetComponent<RectTransform>();
+		anchorMinRight = rectTransformOneButton.anchorMin.x;
+		anchorMaxRight = rectTransformOneButton.anchorMax.x;
+		anchorMinLeft = 0f;
+		anchorMaxLeft = anchorMaxRight - anchorMinRight;
 
-		characterSelectButtons = new CharacterSelectButton[allButtons.Length];
-		buttonsRects = new Rect[allButtons.Length];
-		for(int i=0; i<allButtons.Length;i++){
-			characterSelectButtons[i] = allButtons[i].GetComponent<CharacterSelectButton>();
-			buttonsRects[i] = GetRectFromRectTransformUI( allButtons[i].GetComponent<RectTransform>() );
+
+		charactersOnMissionList = GameObject.FindGameObjectWithTag(Tags.charactersOnMissionList).GetComponent<CharactersOnMissionList>();
+		buttonsOnLeft = charactersOnMissionList.getButtonsOnLeft();
+		if(buttonsOnLeft){
+			setButtonsToLeft();
 		}
+		else{
+			setButtonsToRight();
+		}
+
 		setPause(false);
+
 
 		//
 		text = GameObject.FindGameObjectWithTag("debugtext").GetComponent<Text>();
@@ -247,6 +263,45 @@ public class ControlsManager : MonoBehaviour {
 		float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
 		return deltaMagnitudeDiff  /* *screenAdjuster*/;
+	}
+
+	public void setButtonsToLeft(){
+		//get the width from the button, and set the clickable area to remove the buttons width
+		RectTransform rectTransform = allButtons[0].GetComponent<RectTransform>();
+		float buttonWidth = GetWidthFromRectTransformUI(rectTransform);
+		clickableArea = new Rect(buttonWidth,0,Screen.width - buttonWidth, Screen.height);
+
+		characterSelectButtons = new CharacterSelectButton[allButtons.Length];
+		buttonsRects = new Rect[allButtons.Length];
+		for(int i=0; i<allButtons.Length;i++){
+			characterSelectButtons[i] = allButtons[i].GetComponent<CharacterSelectButton>();
+
+			RectTransform buttonRectTransform = allButtons[i].GetComponent<RectTransform>();
+			buttonRectTransform.anchorMin = new Vector2(anchorMinLeft, buttonRectTransform.anchorMin.y);
+			buttonRectTransform.anchorMax = new Vector2(anchorMaxLeft, buttonRectTransform.anchorMax.y);
+
+			buttonsRects[i] = GetRectFromRectTransformUI( buttonRectTransform );
+			characterSelectButtons[i].setButtonOnLeft(true);
+		}
+	}
+	public void setButtonsToRight(){
+		//get the width from the button, and set the clickable area to remove the buttons width
+		RectTransform rectTransform = allButtons[0].GetComponent<RectTransform>();
+		float buttonWidth = GetWidthFromRectTransformUI(rectTransform);
+		clickableArea = new Rect(0,0,Screen.width - buttonWidth, Screen.height);
+		
+		characterSelectButtons = new CharacterSelectButton[allButtons.Length];
+		buttonsRects = new Rect[allButtons.Length];
+		for(int i=0; i<allButtons.Length;i++){
+			characterSelectButtons[i] = allButtons[i].GetComponent<CharacterSelectButton>();
+
+			RectTransform buttonRectTransform = allButtons[i].GetComponent<RectTransform>();
+			buttonRectTransform.anchorMin = new Vector2(anchorMinRight, buttonRectTransform.anchorMin.y);
+			buttonRectTransform.anchorMax = new Vector2(anchorMaxRight, buttonRectTransform.anchorMax.y);
+
+			buttonsRects[i] = GetRectFromRectTransformUI( buttonRectTransform );
+			characterSelectButtons[i].setButtonOnLeft(false);
+		}
 	}
 
 	public void setPause(bool pause){

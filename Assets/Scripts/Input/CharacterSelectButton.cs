@@ -13,6 +13,7 @@ public class CharacterSelectButton : MonoBehaviour {
 	Sprite buttonSprite;
 	Sprite buttonSelectedSprite;
 	Sprite buttonDeathSprite;
+	bool buttonOnLeft = false;
 
 	ControlsManager controlsManager;
 
@@ -117,5 +118,22 @@ public class CharacterSelectButton : MonoBehaviour {
 			SetAllButtonsSelection(true);
 			charactersManager.SelectAllCharacters();
 		}
+	}
+
+	public void ReverseAllSprites(){
+		GetComponent<Image>().rectTransform.rect.Set(GetComponent<Image>().rectTransform.rect.x, GetComponent<Image>().rectTransform.rect.y, -GetComponent<Image>().rectTransform.rect.width, GetComponent<Image>().rectTransform.rect.height);
+		Debug.Log("trying to reverse");
+		/*
+		buttonSprite.rect.Set(buttonSprite.rect.x,buttonSprite.rect.y,-buttonSprite.rect.width,buttonSprite.rect.height);
+		buttonSelectedSprite.rect.Set(buttonSelectedSprite.rect.x,buttonSelectedSprite.rect.y,-buttonSelectedSprite.rect.width,buttonSelectedSprite.rect.height);
+		buttonDeathSprite.rect.Set(buttonDeathSprite.rect.x,buttonDeathSprite.rect.y,-buttonDeathSprite.rect.width,buttonDeathSprite.rect.height);
+		*/
+	}
+
+	public void setButtonOnLeft(bool buttonOnLeft){
+		if(this.buttonOnLeft != buttonOnLeft){
+			ReverseAllSprites();
+		}
+		this.buttonOnLeft = buttonOnLeft;
 	}
 }

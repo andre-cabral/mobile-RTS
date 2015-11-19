@@ -34,6 +34,9 @@ public class CharactersOnMissionManager : MonoBehaviour {
 
 			allCharacterOnMissionTemplates[i] = characterOnMissionTemplate;
 		}
+
+		hardCoreModeToggle.isOn = charactersOnMissionList.getHardCoreMode();		
+		buttonsOnLeft.isOn = charactersOnMissionList.getButtonsOnLeft();
 	}
 
 	public bool HasEmptyCharacter(){
