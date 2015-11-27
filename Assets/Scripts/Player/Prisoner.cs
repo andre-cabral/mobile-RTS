@@ -10,14 +10,12 @@ public class Prisoner : MonoBehaviour {
 	public Sprite spriteOpened;
 	bool isSaved = false;
 
-	void OnTriggerEnter(Collider collider){
-		if(collider.CompareTag(Tags.player)){
-			if(!isSaved){
-				if(collider.gameObject.GetComponent<PrisonersSaved>().SavePrisoner(characterPrefab, spawnPoint.position, spawnPoint.rotation)){
-					isSaved = true;
-					spriteRenderer.sprite = spriteOpened;
-					colliderComponent.enabled = false;
-				}
+	public void SavePrisoner(GameObject savior){
+		if(!isSaved){
+			if(savior.GetComponent<PrisonersSaved>().SavePrisoner(characterPrefab, spawnPoint.position, spawnPoint.rotation)){
+				isSaved = true;
+				spriteRenderer.sprite = spriteOpened;
+				colliderComponent.enabled = false;
 			}
 		}
 	}

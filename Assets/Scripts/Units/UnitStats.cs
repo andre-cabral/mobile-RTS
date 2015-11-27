@@ -17,7 +17,9 @@ public class UnitStats : MonoBehaviour {
 	public Lifebar lifebar;
 	public GameObject[] objectsToHideOnDeath;
 	public float lookAtEnemySpeed = 3f;
+	public Transform footPosition;
 	bool isDead = false;
+	GameObject unitWhoKilledThis;
 	const int maxDeathAnimations = 2;
 	NavMeshAgent navMeshAgent;
 	Collider colliderComponent;
@@ -34,6 +36,10 @@ public class UnitStats : MonoBehaviour {
 		if(spriteObject != null){
 			animator = spriteObject.GetComponent<Animator>();
 			hashAnimatorUnit = spriteObject.GetComponent<HashAnimatorUnit>();
+		}
+
+		if(footPosition == null){
+			footPosition = this.transform;
 		}
 	}
 
@@ -71,15 +77,16 @@ public class UnitStats : MonoBehaviour {
 		}else{
 			life = 0;
 		}
-		CheckDeath();
+		CheckDeath(attacker);
 		LifeChanged();
 	}
 
-	public void setLife(int life){
+	public void setLife(GameObject changer, int life){
 		this.life = life;
-		CheckDeath();
+		CheckDeath(changer);
 		LifeChanged();
 	}
+
 
 	public void recoverLife(int lifeToRecover){
 		int lifeTotalRecovered = life + lifeToRecover;
@@ -87,8 +94,9 @@ public class UnitStats : MonoBehaviour {
 		LifeChanged();
 	}
 	
-	void CheckDeath(){
+	void CheckDeath(GameObject attacker){
 		if(life <= 0){
+			unitWhoKilledThis = attacker;
 			DeathEffects();
 		}
 	}
@@ -117,5 +125,9 @@ public class UnitStats : MonoBehaviour {
 			animator.SetBool(hashAnimatorUnit.isDead, true);
 			animator.SetInteger(hashAnimatorUnit.deathAnimationNumber, Random.Range(0, maxDeathAnimations));
 		}
+	}
+
+	public GameObject getUnitWhoKilledThis(){
+		return unitWhoKilledThis;
 	}
 }

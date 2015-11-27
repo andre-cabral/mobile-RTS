@@ -172,8 +172,8 @@ public class Attack : MonoBehaviour {
 
 			foreach(GameObject specificTarget in targetsOnArea){
 				//intantiate a projectile without collisions on targets
-				if(projectile != null){
-					GameObject newProjectile = (GameObject)Instantiate(projectile, specificTarget.transform.position, Quaternion.identity);
+				if(projectile != null && specificTarget.tag == targetTag){
+					GameObject newProjectile = (GameObject)Instantiate(projectile, specificTarget.GetComponent<UnitStats>().footPosition.position, Quaternion.identity);
 				}
 
 				CauseDamageOnSpecificTarget(specificTarget);

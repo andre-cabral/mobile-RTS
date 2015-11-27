@@ -5,6 +5,7 @@ public class EnemyStats : UnitStats {
 
 	public GameObject[] objectsToDeactivateOnDeath;
 	public bool destroyOnDeath = false;
+	public Prisoner prisonerToSave;
 	EnemyMovement enemyMovement;
 	GameObject gameController;
 	EnemiesCounter enemiesCounter;
@@ -32,6 +33,12 @@ public class EnemyStats : UnitStats {
 		if(destroyOnDeath){
 			Destroy(gameObject);
 		}
+
+		if(prisonerToSave != null && getUnitWhoKilledThis() != null){
+			if(getUnitWhoKilledThis().GetComponent<PrisonersSaved>() != null){
+				prisonerToSave.SavePrisoner(getUnitWhoKilledThis());
+			}
+		}
 	}
 
 	public override void takeDamage(GameObject attacker, int attackingValue){
@@ -45,6 +52,6 @@ public class EnemyStats : UnitStats {
 				if(!enemyMovement.getIsSeeingPlayer() ){
 					enemyMovement.setIsSeeingPlayer(true);
 				}
-			}			
+			}
 	}
 }

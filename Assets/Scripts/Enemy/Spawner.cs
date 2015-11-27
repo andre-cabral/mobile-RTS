@@ -77,7 +77,7 @@ public class Spawner : MonoBehaviour {
 		numberOfSpawnsOcurred++;
 
 		if(numberOfSpawnsOcurred >= numberOfSpawns){
-			unitStats.setLife(0);
+			unitStats.setLife(gameObject, 0);
 			enabled = false;
 		}
 	}
