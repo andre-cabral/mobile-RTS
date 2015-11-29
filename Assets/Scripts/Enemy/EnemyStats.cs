@@ -34,9 +34,26 @@ public class EnemyStats : UnitStats {
 			Destroy(gameObject);
 		}
 
-		if(prisonerToSave != null && getUnitWhoKilledThis() != null){
-			if(getUnitWhoKilledThis().GetComponent<PrisonersSaved>() != null){
-				prisonerToSave.SavePrisoner(getUnitWhoKilledThis());
+		if(prisonerToSave != null){
+			if(getUnitWhoKilledThis() != null ){
+				if(getUnitWhoKilledThis().GetComponent<PrisonersSaved>() != null){
+					prisonerToSave.SavePrisoner(getUnitWhoKilledThis());
+				}else{
+					FirstAliveCharacterSavePrisoner();
+				}
+			}else{
+				FirstAliveCharacterSavePrisoner();
+			}
+		}
+	}
+
+	void FirstAliveCharacterSavePrisoner(){
+		GameObject[] allCharacters = gameController.GetComponent<CharactersManager>().GetAllCharacters();
+		bool savedThePrisoner = false;
+		foreach(GameObject character in allCharacters){
+			if(!savedThePrisoner && !character.GetComponent<UnitStats>().getIsDead()){
+				prisonerToSave.SavePrisoner(character);
+				savedThePrisoner = true;
 			}
 		}
 	}
